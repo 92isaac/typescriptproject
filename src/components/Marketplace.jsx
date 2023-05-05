@@ -1,27 +1,31 @@
 import React from "react";
-import { images, product } from "./commonfiles/data";
 import ProductDescription from "./ProductDescription";
 import ProductImageGallery from "./ProductImageGallery";
 import { ProductOrder } from "./ProductOrder";
 import ReviewsRating from "./ReviewsRating";
 import { useParams } from "react-router-dom";
 import NavLocation from "./navbar/NavLocation";
+import { useGetSingleProductsQuery } from "../features/apiSlice";
 
 export const Marketplace = () => {
   const { id } =useParams()
-  const displayitems = product[id]
+  const {data: singleproduct } = useGetSingleProductsQuery(id)
+  
+  // const displayitems = singleproduct.products.id
+  console.log(singleproduct)
   return (
     <div className="bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <NavLocation />
         <div className="block md:flex md:flex-row">
         {/* <div className="block md:grid md:grid-cols-3"> */}
-          <ProductImageGallery images={images} />
-          <ProductDescription />
-          <ProductOrder />
+          <ProductImageGallery images={singleproduct?.images} />
+          <ProductDescription detail={singleproduct}/>
+          <ProductOrder order={singleproduct}/>
         </div>
-        <ReviewsRating />
+        <ReviewsRating images={singleproduct?.images.slice(0,4)}/>
       </div>
+
     </div>
   );
 };

@@ -21,7 +21,8 @@ export const productApi = createApi({
             query: (searchQuery)=> `products/search?q=${searchQuery}`,        
         }),
     })
+    
 })
 
-export const { useGetAllProductsQuery, useGetProductCategoryQuery, useGetSearchProductQuery, useGetByCategoriesQuery } = productApi
+export const { useGetAllProductsQuery, useGetProductCategoryQuery, useGetSearchProductQuery, useGetByCategoriesQuery, useGetSingleProductsQuery } = productApi
 

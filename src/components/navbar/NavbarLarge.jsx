@@ -71,7 +71,7 @@ const NavbarLarge = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="hidden  md:container md:mx-auto md:py-4 md:flex md:justify-between md:items-center">
         {/* Logo with shop icon */}
-          <Link to='/'>
+          <Link to='/cart'>
         <div className="flex items-center">
           <div className="text-2xl mr-2">
             <FaShoppingCart className="inline"/>
@@ -111,9 +111,11 @@ const NavbarLarge = () => {
 
         {/* Cart and notification icon */}
         <div className="flex items-center ">
+          <Link to='/cart'>
           <div className="text-xl mr-6">
             <FaShoppingCart />
           </div>
+          </Link>
           <div className="text-xl mr-6 relative">
             <div className="absolute top-0 right-0 w-4 h-4 bg-red-500 rounded-full text-xs flex justify-center items-center text-white font-bold">
               3

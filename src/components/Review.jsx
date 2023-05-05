@@ -7,7 +7,7 @@ import { reviews } from "./commonfiles/data";
 import Pagination from "./commonfiles/Pagination";
 
 
-export const Review = () => {
+export const Review = ({images}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(10);
 
@@ -15,15 +15,15 @@ export const Review = () => {
     setCurrentPage(pageNumber);
   };
 
-  const images = [img1, img1, img1, img1];
+  // const images = [img1, img1, img1, img1];
   return (
     <div className="px-4">
       <h3 className="px-4">Reviews with images and Videos</h3>
 
       <div className="flex gap-1 w-full">
-        {images.map((image, i) => (
-          <div className="rounded-md w-28 bg-gray-400" key={i}>
-            <img src={image} className="object-cover" alt={image?.src} />
+        {images?.map((image, i) => (
+          <div className="rounded-md w-20 mx-auto bg-gray-400" key={i}>
+            <img src={image} className="object-cover w-20" alt={image?.src} />
           </div>
         ))}
       </div>

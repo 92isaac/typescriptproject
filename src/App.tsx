@@ -5,6 +5,7 @@ import Home from './route/Home'
 import { InitialSpinner } from "./components/commonfiles/InitialSpinner";
 import SharedLayout from "./components/commonfiles/SharedLayout";
 import { Marketplace } from "./components/Marketplace";
+import Cart from "./route/Cart";
 // import Footer from "./components/commonfiles/Footer";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <Route path="/" element={<SharedLayout />}>
       <Route index element={<Home/>} />
       <Route path="/:id" element={<Marketplace/>} />
+      <Route path="/cart" element={<Cart/>} />
       </Route>
     </Routes>
     </div>}

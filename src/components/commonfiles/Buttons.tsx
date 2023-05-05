@@ -1,9 +1,12 @@
-import React from "react";
+interface Btn {
+  click: () => void;
+  name: string;
+}
 
-export const Buttons = (props) => {
+export const Buttons: React.FC<Btn> = (props) => {
   return (
     <div className="mx-4 my-3">
-      <button className=" w-full
+      <button className=" w-full capitalize
       bg-blue bg-zinc-900 text-white  bg-gradient-to-br from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500  font-medium py-2 px-4 rounded-full shadow-md transform hover:scale-105 transition duration-500 ease-in-out
       " onClick={props.click}>
         {props.name}
@@ -11,5 +14,3 @@ export const Buttons = (props) => {
     </div>
   );
 };
-
-

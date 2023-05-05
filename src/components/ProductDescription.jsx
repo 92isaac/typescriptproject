@@ -3,15 +3,15 @@ import { FaStar } from "react-icons/fa";
 import { FiShoppingBag } from "react-icons/fi";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
-const ProductDescription = () => {
+const ProductDescription = ({detail}) => {
   return (
     <div className="px-4 ">
-      <div>
-        <h4 className="text-[#24836C] font-semibold text-sm ">
-          Visit Shrifting_Store
+      <div className="">
+        <h4 className="text-[#24836C] font-semibold text-sm w-1/2">
+          {detail?.brand}
         </h4>
         <h2 className="font-bold text-2xl mt-4">
-          Essential Men's Regular-Fit-Long-Sleeve Oxford Shirt
+          {detail?.description.slice(0,40)}
         </h2>
         <p className="text-gray-300 text-sm mb-7">
           <FaStar className="text-yellow-500 inline" />{" "}
@@ -48,10 +48,10 @@ const ProductDescription = () => {
           <div className="flex gap-4">
             <ul>
               <li className="font-semibold text-sm leading-7">
-                <span className="text-gray-300">Brand:</span> CharmKpR
+                <span className="text-gray-300">Brand:</span> {detail?.brand}
               </li>
               <li className="font-semibold text-sm leading-7">
-                <span className="text-gray-300">Category:</span> Casual Shirt
+                <span className="text-gray-300">Category:</span> {detail?.category}
               </li>
               <li className="font-semibold text-sm leading-7">
                 <span className="text-gray-300">Condition</span> New
@@ -77,16 +77,16 @@ const ProductDescription = () => {
         <h3 className="font-semibold">Description:</h3>
         <ul className="list-disc pl-5">
           <li className="text-xs leading-6 text-gray-300">
-            Long-sleeve dress shirt in classic fit featuring button down collar
+          {detail?.brand}
           </li>
           <li className="text-xs leading-6 text-gray-300">
-            Patch pockect on left chest
+          {detail?.description}
           </li>
           <li className="text-xs leading-6 text-gray-300">
             Durable combination cotton fabric
           </li>
           <li className="text-xs leading-6 text-gray-300">
-            Comfortable and quality Dress shirt
+            Comfortable and quality {detail?.category}
           </li>
           <li className="text-xs leading-6 text-gray-300">
             Go to classic button down shirt for all occasion
