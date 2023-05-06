@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import Home from './route/Home'
-import { InitialSpinner } from "./components/commonfiles/InitialSpinner";
+import InitialSpinner  from "./components/commonfiles/InitialSpinner";
 import SharedLayout from "./components/commonfiles/SharedLayout";
 import { Marketplace } from "./components/Marketplace";
 import Cart from "./route/Cart";

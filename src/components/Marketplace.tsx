@@ -1,7 +1,6 @@
-import React from "react";
 import ProductDescription from "./ProductDescription";
 import ProductImageGallery from "./ProductImageGallery";
-import { ProductOrder } from "./ProductOrder";
+import  ProductOrder  from "./ProductOrder";
 import ReviewsRating from "./ReviewsRating";
 import { useParams } from "react-router-dom";
 import NavLocation from "./navbar/NavLocation";

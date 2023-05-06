@@ -1,10 +1,19 @@
 import React, { useState } from "react";
-import {  FaFlag, FaShoppingBag } from "react-icons/fa";
+import { FaFlag, FaShoppingBag } from "react-icons/fa";
 import { FiMessageSquare, FiShare2 } from "react-icons/fi";
 import img1 from "../assets/products/1.png";
 
-export const ProductOrder = ({order}) => {
-  const [orderPro, setOrderPro ] = useState(1)
+interface Props {
+  order: {
+    discountPercentage: number;
+    thumbnail: string;
+    stock: number;
+    price: number;
+  };
+}
+
+const ProductOrder: React.FC<Props> = ({ order }) => {
+  const [orderPro, setOrderPro] = useState(1);
   return (
     <div className="md:w-1/3 ">
       <div className="flex justify-between text-white bg-[#2A8A97] rounded py-3 px-4 gap-2">
@@ -25,7 +34,7 @@ export const ProductOrder = ({order}) => {
         <div className="mt-4">
           <div className="flex gap-6">
             <div className="w-16">
-              <img src={order?.thumbnail} alt={img1.src} />
+              <img src={order?.thumbnail} alt={img1} />
             </div>
             <div className="font-bold">
               <p className="text-gray-400 font-normal">Selected Size</p>
@@ -36,7 +45,7 @@ export const ProductOrder = ({order}) => {
           <div className="mt-4">
             <div className="flex justify-between ">
               <div className="border py-1 px-4 rounded-md">
-                <button className="w-10 h-10 p-2 rounded-full text-center" onClick={()=>setOrderPro(prev => prev - 1)} disabled={orderPro < 1 ? true : null}>
+                <button className="w-10 h-10 p-2 rounded-full text-center" onClick={()=>setOrderPro(prev => prev - 1)} disabled={orderPro < 1 ? true : false}>
                   -
                 </button>
                 <span className="mx-2">{orderPro}</span>
@@ -70,3 +79,5 @@ export const ProductOrder = ({order}) => {
     </div>
   );
 };
+
+export default ProductOrder

@@ -1,18 +1,30 @@
 import React from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  const getPageNumbers = () => {
-    const pages = [];
+type Props = {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+};
+
+const Pagination: React.FC<Props> = ({ currentPage, totalPages, onPageChange }) => {
+  const getPageNumbers = (): number[] => {
+    const pages: number[] = [];
     for (let i = 1; i <= totalPages; i++) {
-      if (i === 1 || i === currentPage || i === totalPages || i === currentPage - 1 || i === currentPage + 1) {
+      if (
+        i === 1 ||
+        i === currentPage ||
+        i === totalPages ||
+        i === currentPage - 1 ||
+        i === currentPage + 1
+      ) {
         pages.push(i);
       }
     }
     return pages;
   };
 
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: number): void => {
     onPageChange(page);
   };
 
@@ -21,6 +33,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <ul className="flex">
         <li className={`${currentPage === 1 ? 'hidden' : ''}`}>
           <button
+            title='previous'
             className="p-2 mx-1 text-gray-600 transition-colors duration-300 rounded-full hover:bg-gray-300 focus:outline-none"
             onClick={() => handlePageChange(currentPage - 1)}
           >
@@ -41,6 +54,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         ))}
         <li className={`${currentPage === totalPages ? 'hidden' : ''}`}>
           <button
+            title='next'
             className="p-2 mx-1 text-gray-600 transition-colors duration-300 rounded-full hover:bg-gray-300 focus:outline-none"
             onClick={() => handlePageChange(currentPage + 1)}
           >

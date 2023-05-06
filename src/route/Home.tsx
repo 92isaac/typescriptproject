@@ -1,6 +1,5 @@
-import React from 'react'
 import SliderComponent from '../components/framer/SliderComponent'
-import { SpecialProduct } from '../components/commonfiles/SpecialProduct'
+import SpecialProduct  from '../components/commonfiles/SpecialProduct'
 // import { Buttons } from '../components/commonfiles/Buttons'
 
 

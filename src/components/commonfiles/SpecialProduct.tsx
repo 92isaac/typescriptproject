@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Buttons } from "./Buttons";
 import { OtherProduct } from "./OtherProduct";
@@ -9,27 +9,38 @@ import {
   useGetProductCategoryQuery, 
   useGetSearchProductQuery
 } from "../../features/apiSlice";
-import Loading from "../commonfiles/Loading";
-import ErrorPage from "../commonfiles/ErrorPage";
+import Loading from "./Loading";
+import ErrorPage from "./ErrorPage";
 
-export const SpecialProduct = () => {
-  const [categoryp, setCategory] = useState("smartphones");
+
+interface Product {
+  id: string;
+  thumbnail: string;
+  category: string;
+  description: string;
+  price: number;
+  rating: number;
+  totalRating: number;
+  }
+  
+  const SpecialProduct = (): JSX.Element => {
+  const [categoryp, setCategory] = useState<string>("smartphones");
   const navigate = useNavigate();
   const {
-    data: allProductsData,
-    error,
-    isError,
-    isLoading,
+  data: allProductsData,
+  error,
+  isError,
+  isLoading,
   } = useGetAllProductsQuery();
   const { data: allCategory } = useGetProductCategoryQuery();
   const {data: searchQuery } = useGetSearchProductQuery(categoryp)
   const { data: productByCategory } = useGetByCategoriesQuery(categoryp);
   console.log(productByCategory);
   console.log(searchQuery);
-
-  const calPercentageRting = (rate) => {
-    let rateVal = (rate / 5) * 100;
-    return rateVal;
+  
+  const calPercentageRting = (rate: number): number => {
+  const rateVal = (rate / 5) * 100;
+  return rateVal;
   };
 
   return (
@@ -59,7 +70,7 @@ export const SpecialProduct = () => {
           {isLoading ? (
             <Loading />
           ) : (
-            allProductsData?.products.slice(0, 10).map((product) => (
+            allProductsData?.products.slice(0, 10).map((product :  Product) => (
               <div
                 className="border shadow md:w-1/6 mb-6"
                 key={product?.id}
@@ -104,10 +115,10 @@ export const SpecialProduct = () => {
               </div>
             ))
           )}
-          {isError ? <ErrorPage message={error?.message} /> : null}
+          {isError ? <ErrorPage message={`Some thing went wrong`} /> : null}
         </div>
         <div className="md:grid md:grid-cols-5 md:mt-16">
-          {allCategory?.map((categ, index) => (
+          {allCategory?.map((categ:any, index: number) => (
             <Buttons
               key={index}
               click={() => setCategory(categ)}
@@ -124,3 +135,6 @@ export const SpecialProduct = () => {
     </div>
   );
 };
+
+
+export default SpecialProduct

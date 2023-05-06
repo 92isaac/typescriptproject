@@ -1,4 +1,3 @@
-import React from 'react'
 import {  RiArrowDropRightLine } from 'react-icons/ri'
 
 const NavLocation = () => {

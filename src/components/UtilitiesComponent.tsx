@@ -1,4 +1,3 @@
-import React from 'react'
 import { RiArrowDropDownLine } from 'react-icons/ri'
 
 export const UtilitiesComponent = () => {
@@ -17,13 +16,13 @@ export const UtilitiesComponent = () => {
                     <div className='border rounded-l-md inline bg-[#E8DDDF]'>
                         <RiArrowDropDownLine className='bg-[#E8DDDF] text-2xl'/>
                     </div>
-                    <input type="text" className='border rounded-r-md w-2/3' />
+                    <input type="text" title='dropdown' className='border rounded-r-md w-2/3' />
                 </div>
             </div>
             <div className="block pt-1">
             <label htmlFor="" className='font-semibold text-xs'>Phone Number</label>
             <div className='flex'>
-                    <input type="text" className='border rounded-l-md w-2/3' />
+                    <input title='dropdown' type="text" className='border rounded-l-md w-2/3' />
                     <div className='border rounded-r-md inline bg-[#E8DDDF]'>
                         <RiArrowDropDownLine className='bg-[#E8DDDF] text-2xl'/>
                     </div>

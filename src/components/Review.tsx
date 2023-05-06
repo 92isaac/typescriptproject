@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaStar, FaThumbsUp } from "react-icons/fa";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import img1 from "../assets/products/1.png";
 import { RxDot } from 'react-icons/rx'
 import { reviews } from "./commonfiles/data";
 import Pagination from "./commonfiles/Pagination";
 
+interface ReviewProps {
+  images: string[];
+}
 
-export const Review = ({images}) => {
+export const Review: React.FC<ReviewProps> = ({ images }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(10);
 
-  const handlePageChange = (pageNumber) => {
+  const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
+
 
   // const images = [img1, img1, img1, img1];
   return (
@@ -23,7 +26,7 @@ export const Review = ({images}) => {
       <div className="flex gap-1 w-full">
         {images?.map((image, i) => (
           <div className="rounded-md w-20 mx-auto bg-gray-400" key={i}>
-            <img src={image} className="object-cover w-20" alt={image?.src} />
+            <img src={image} className="object-cover w-20" alt={image} />
           </div>
         ))}
       </div>
@@ -55,7 +58,7 @@ export const Review = ({images}) => {
                         <div className="flex font-bold">
                           <FaStar className="text-yellow-300 " />
                           <p className="py-1">5.0</p>
-                          <button className="text-xs flex bg-inherit font-thin border-0">
+                          <button title="button" className="text-xs flex bg-inherit font-thin border-0">
                             <RxDot/>
                             <RxDot/>
                             <RxDot/>

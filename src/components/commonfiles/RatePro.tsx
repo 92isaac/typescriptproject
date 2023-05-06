@@ -1,7 +1,11 @@
 import React from 'react'
 import { FaStar, FaStarHalf } from 'react-icons/fa';
 
-export const RatePro = ({ rating }) => {
+interface Rating {
+  rating: number;
+}
+
+export const RatePro: React.FC<Rating> = ({ rating }) => {
     // Calculate the number of full stars to display
     const fullStars = Math.floor(rating);
     // Calculate the decimal part of the rating to determine if we need to display a half star

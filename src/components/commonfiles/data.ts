@@ -3,10 +3,32 @@ import img2 from '../../assets/products/2.png'
 import img3 from '../../assets/products/3.png'
 import img4 from '../../assets/products/5.png'
 
-export const images = [img1, img2, img3, img4]
+interface Testimonies {
+  product: string;
+  delivery: string;
+  response: string;
+}
 
+interface Review {
+  id: number;
+  img: string;
+  name: string;
+  testimonies: Testimonies;
+}
 
-export const reviews =[
+interface Product {
+  id: number;
+  image: string;
+  category: string;
+  description: string;
+  price: string;
+  rating: string;
+  totalRating: string;
+}
+
+export const images: string[] = [img1, img2, img3, img4];
+
+export const reviews: Review[] = [
     {
         id:1,
         img:img1,
@@ -43,7 +65,7 @@ export const reviews =[
 ]
 
 
-export const product =[
+export const product: Product[] =[
     {
         id:1,
         image:img1,

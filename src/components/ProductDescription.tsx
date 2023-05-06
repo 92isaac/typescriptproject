@@ -1,9 +1,19 @@
-import React from "react";
 import { FaStar } from "react-icons/fa";
 import { FiShoppingBag } from "react-icons/fi";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
-const ProductDescription = ({detail}) => {
+
+
+interface Props {
+  detail: {
+    brand: string;
+    description: string;
+    category: number;
+  };
+}
+
+const ProductDescription: React.FC<Props> = ({ detail }) => {
+
   return (
     <div className="px-4 ">
       <div className="">

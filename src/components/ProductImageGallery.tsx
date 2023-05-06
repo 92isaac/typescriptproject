@@ -1,20 +1,25 @@
 import { useState } from "react";
 
-const ProductImageGallery = ({ images }) => {
-  const [selectedImage, setSelectedImage] = useState(images ? images[0] : []);
+interface Props {
+  images: string[];
+}
 
-  const selectImage = (image) => {
+const ProductImageGallery: React.FC<Props> = ({ images }) => {
+  const [selectedImage, setSelectedImage] = useState<string>(images ? images[0] : "");
+
+  const selectImage = (image: string) => {
     setSelectedImage(image);
   };
-console.log(selectedImage)
+
+  console.log(selectedImage);
+
   return (
     <div className="pt-10 flex flex-row-reverse w-2/5 md:block">
-    {/* <div className="pt-10 flex flex-row-reverse md:col-span-1 md:block"> */}
-        <div className="md:w-full">
+      <div className="md:w-full">
         <img src={selectedImage} alt="" className="w-full h-90 object-contain aspect-auto" />
       </div>
       <div className="w-full md:w-full block md:flex md:justify-between mb-4 lg:mb-0">
-        {images?.map((image, index) => (
+        {images?.map((image: string, index: number) => (
           <div
             key={index}
             className={` lg:w-full mb-4 object-cover lg:mb-0  ${
@@ -26,7 +31,6 @@ console.log(selectedImage)
           </div>
         ))}
       </div>
-      
     </div>
   );
 };

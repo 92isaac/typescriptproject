@@ -1,16 +1,19 @@
-import React, {useState} from 'react'
-import { FiSearch, FiBell, FiMessageSquare } from "react-icons/fi";
+import { useState } from 'react';
+import { FiSearch, FiBell, FiMessageSquare } from 'react-icons/fi';
 
+type Props = {
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-const NavbarSmall = ({ isSidebarOpen, setIsSidebarOpen }) => {
-    const closeSidebar = () => {
-        setIsSidebarOpen(false);
-      };
+const NavbarSmall: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen }) => {
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
 
-        // State variables to hold notification and message counts
-  const [notificationCount, setNotificationCount] = useState(5);
-  const [messageCount, setMessageCount] = useState(2);
-
+  // State variables to hold notification and message counts
+  const [notificationCount, setNotificationCount] = useState<number>(5);
+  const [messageCount, setMessageCount] = useState<number>(2);
 
   return (
     <div

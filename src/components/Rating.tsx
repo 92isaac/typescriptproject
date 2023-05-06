@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { PercentageRating } from './commonfiles/PercentageRating';
+import PercentageRating from './commonfiles/PercentageRating';
 import { RatePro } from './commonfiles/RatePro';
 
 

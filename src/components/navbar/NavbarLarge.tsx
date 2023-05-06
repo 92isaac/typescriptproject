@@ -104,7 +104,7 @@ const NavbarLarge = () => {
             placeholder="Search for products"
             className="rounded py-1.5 pl-6 pr-12 w-90 border-2 bg-[#161828] border-[#363741] border-transparent  focus:outline-none transition-colors duration-300"
           />
-          <button className="absolute right-0 top-0 bottom-0 px-4 rounded bg-[#24836C] focus:bg-[#24836C] transition-colors duration-300">
+          <button title="search" className="absolute right-0 top-0 bottom-0 px-4 rounded bg-[#24836C] focus:bg-[#24836C] transition-colors duration-300">
             <AiOutlineSearch className="text-white" />
           </button>
         </div>
