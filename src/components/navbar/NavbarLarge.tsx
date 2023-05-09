@@ -1,13 +1,48 @@
-import React, {useState} from "react";
-import { FaShoppingCart, FaMapMarkerAlt, FaBars, FaBell } from "react-icons/fa";
+import {useState} from "react";
+import { FaShoppingCart, FaMapMarkerAlt, FaBell } from "react-icons/fa";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { AiOutlineSearch } from "react-icons/ai";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useGetSearchProductQuery } from "../../features/apiSlice";
+import { useDispatch } from "react-redux";
+import { searchResult } from "../../features/searchSlice"; 
+
 
 const NavbarLarge = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  const [ searchData, setSearch] = useState('')
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [selectedOption, setSelectedOption] = useState('');
+
+  const options = [
+    { value: '23,234.6', change: '+0.005%', currency: 'btc' },
+    { value: '1,791.34', change: '-0.003%', currency: 'eth' },
+    { value: '0.2781', change: '-1.23%', currency: 'ltc' },
+  ];
+
+  const handleOptionClick = () => {
+    // setSelectedOption(option);
+    setIsModalOpen(false);
+  };
+
+  const handleModalToggle = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+  // const { data: searchResult } = useGetSearchProductQuery(searchData)
+  
+  console.log(searchResult)
+
+  const handleSubmit = (e: React.FormEvent<HTMLButtonElement>)=>{
+    e.preventDefault()
+    dispatch(searchResult({ searchData }));
+    navigate('/searchresult')
+    setSearch('')
+    // return searchResult
+  }
+  
 
   return (
     <section>
@@ -71,7 +106,7 @@ const NavbarLarge = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="hidden  md:container md:mx-auto md:py-4 md:flex md:justify-between md:items-center">
         {/* Logo with shop icon */}
-          <Link to='/cart'>
+          <Link to='/'>
         <div className="flex items-center">
           <div className="text-2xl mr-2">
             <FaShoppingCart className="inline"/>
@@ -94,20 +129,22 @@ const NavbarLarge = () => {
         
 
         {/* Search input field and button */}
-        <div className="relative">
+        <form className="relative">
             {/* All category dropdown button */}
         <button className=" text-sm left-0 top-0 bottom-0 bg-[#363741] py-2.5 rounded-r">
           All categories <RiArrowDropDownLine className="inline text-2xl" />
         </button>
           <input
+            value={searchData}
+            onChange={(e)=>setSearch(e.target.value)}
             type="text"
             placeholder="Search for products"
             className="rounded py-1.5 pl-6 pr-12 w-90 border-2 bg-[#161828] border-[#363741] border-transparent  focus:outline-none transition-colors duration-300"
           />
-          <button title="search" className="absolute right-0 top-0 bottom-0 px-4 rounded bg-[#24836C] focus:bg-[#24836C] transition-colors duration-300">
+          <button type="submit" title="search" className="absolute right-0 top-0 bottom-0 px-4 rounded bg-[#24836C] focus:bg-[#24836C] transition-colors duration-300" onClick={handleSubmit}>
             <AiOutlineSearch className="text-white" />
           </button>
-        </div>
+        </form>
 
         {/* Cart and notification icon */}
         <div className="flex items-center ">
@@ -125,8 +162,25 @@ const NavbarLarge = () => {
         </div>
 
         {/* Avatar for account dropdown */}
-        <div className="text-xl ml-4">
-          <HiOutlineUserCircle />
+        <div className="text-xl relative">
+          <HiOutlineUserCircle  onClick={handleModalToggle}/>
+          {isModalOpen && (
+        <div className="absolute top-full left-0 z-50 -ml-52 mt-8 w-60 max-h-200 overflow-y-auto border border-gray-300 rounded bg-gray-900">
+          {options?.map((option, index) => (
+            <div
+              key={index}
+              className="p-2 cursor-pointer hover:bg-gray-700"
+              onClick={() => handleOptionClick()}
+            >
+              <div className="flex gap-4">
+                <div className="text-white uppercase">{option.currency.toUpperCase()}</div>
+                <div className="text-white">${option.value}</div>
+                <div className="text-white">{option.change}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
         </div>
       </div>
       </div>

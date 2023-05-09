@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from 'react-router-dom'
+import { useNavigate, RouteProps } from 'react-router-dom';
 import './App.css'
 import Home from './route/Home'
 import InitialSpinner  from "./components/commonfiles/InitialSpinner";
 import SharedLayout from "./components/commonfiles/SharedLayout";
 import { Marketplace } from "./components/Marketplace";
 import Cart from "./route/Cart";
+import ProductSearch from "./route/ProductSearch";
+import SignIn from "./route/SignIn";
 // import Footer from "./components/commonfiles/Footer";
 
 function App() {
@@ -25,7 +28,9 @@ function App() {
       <Route path="/" element={<SharedLayout />}>
       <Route index element={<Home/>} />
       <Route path="/:id" element={<Marketplace/>} />
+      <Route path="/searchresult" element={<ProductSearch/>} />
       <Route path="/cart" element={<Cart/>} />
+      <Route path="/signin" element={<SignIn/>} />
       </Route>
     </Routes>
     </div>}

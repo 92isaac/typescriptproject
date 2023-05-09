@@ -10,7 +10,6 @@ const NavbarSmall: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen }) => {
   const closeSidebar = () => {
     setIsSidebarOpen(false);
   };
-
   // State variables to hold notification and message counts
   const [notificationCount, setNotificationCount] = useState<number>(5);
   const [messageCount, setMessageCount] = useState<number>(2);
