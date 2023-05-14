@@ -4,7 +4,7 @@ import { HiOutlineUserCircle } from "react-icons/hi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
-import { useGetSearchProductQuery } from "../../features/apiSlice";
+// import { useGetSearchProductQuery } from "../../features/apiSlice";
 import { useDispatch } from "react-redux";
 import { searchResult } from "../../features/searchSlice"; 
 

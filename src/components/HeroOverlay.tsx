@@ -1,6 +1,5 @@
-import React from 'react'
-import { OverlaySlider } from './framer/OverlaySlider'
-import { UtilitiesComponent } from './UtilitiesComponent'
+import { OverlaySlider } from './framer/OverlaySlider.tsx'
+import { UtilitiesComponent } from './UtilitiesComponent.tsx'
 
 const HeroOverlay = () => {
   return (

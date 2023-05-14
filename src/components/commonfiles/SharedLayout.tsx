@@ -3,6 +3,9 @@ import { Outlet } from "react-router-dom";
 import NavbarLarge from '../navbar/NavbarLarge';
 import NavbarSmall from '../navbar/NavbarSmall';
 import Footer from './Footer';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const SharedLayout = () => {
@@ -15,6 +18,7 @@ const SharedLayout = () => {
     setIsSidebarOpen={setIsSidebarOpen}
     isSidebarOpen={isSidebarOpen}
     />
+      <ToastContainer />
     <Outlet />
     <Footer />
     </>

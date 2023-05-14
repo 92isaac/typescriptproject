@@ -11,7 +11,7 @@ interface ReviewProps {
 
 export const Review: React.FC<ReviewProps> = ({ images }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(10);
+  const [totalPages] = useState(10);
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);

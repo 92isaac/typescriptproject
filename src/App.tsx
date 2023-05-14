@@ -1,18 +1,26 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from 'react-router-dom'
-import { useNavigate, RouteProps } from 'react-router-dom';
 import './App.css'
-import Home from './route/Home'
-import InitialSpinner  from "./components/commonfiles/InitialSpinner";
-import SharedLayout from "./components/commonfiles/SharedLayout";
-import { Marketplace } from "./components/Marketplace";
-import Cart from "./route/Cart";
-import ProductSearch from "./route/ProductSearch";
-import SignIn from "./route/SignIn";
-// import Footer from "./components/commonfiles/Footer";
+import Home from './route/Home.tsx'
+import InitialSpinner  from "./components/commonfiles/InitialSpinner.tsx";
+import SharedLayout from "./components/commonfiles/SharedLayout.tsx";
+import { Marketplace } from "./components/Marketplace.tsx";
+import Cart from "./route/Cart.tsx";
+import ProductSearch from "./route/ProductSearch.tsx";
+import SignIn from "./route/SignIn.tsx";
+import { useAppDispatch } from "./constant/hooks.ts";
+import { setUser } from "./features/authSlice.ts";
+
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const dispatch = useAppDispatch()
+  const user = JSON.parse(localStorage.getItem("user") || "{}")
+  const [loading, setLoading] = useState(false);
+
+  useEffect(()=>{
+    dispatch(setUser(user));
+  }, [])
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);

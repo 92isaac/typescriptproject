@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import ProductSearchResult from '../components/ProductSearchResult'
-import { useGetSearchProductQuery } from '../features/apiSlice';
+import { useGetSearchProductQuery } from '../features/productApiSlice';
 import ErrorPage from '../components/commonfiles/ErrorPage';
 
 

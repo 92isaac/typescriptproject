@@ -1,38 +1,54 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { login } from '../features/services';
-import { useSelector } from "react-redux"
-import { loginSuccess, selectCurrentToken, selectCurrentUser } from '../features/User';
-import { useNavigate } from 'react-router-dom';
-
+import { useEffect, useState } from "react";
+import { useLoginUserMutation } from "../features/authApi";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../constant/hooks";
+import { setUser } from "../features/authSlice";
 
 const LoginForm = () => {
+  const [
+    loginUser,
+    {
+      data: loginData,
+      isSuccess: isLoginSuccess,
+      isError: isLoginError,
+      error: loginError,
+    },
+  ] = useLoginUserMutation();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate()
-  const dispatch = useDispatch<any>();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const user = useSelector(loginSuccess)
-  // const token = useSelector(selectCurrentToken)
-  // const user = useSelector(selectCurrentUser)
-  console.log(user)
-  // console.log(token)
+  const dispatch = useAppDispatch()
 
-  const handleLogin = (e: any) => {
-    e.preventDefault();
-    dispatch(login(username, password));
-    if( user) return navigate('/home')
-    console.log(username, password);
-
+  const handleLogin = async (e:React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    if(username && password) {
+      await loginUser({username, password});
+    }else {
+      toast.error('All input fields are required')
+    }
   };
+
+  useEffect(()=>{
+    if(isLoginSuccess){
+      toast.success('Login Success');
+      dispatch(setUser({token:loginData.token, name:loginData.firstName}))
+      navigate('/')
+    }
+  }, [isLoginSuccess]);
 
   return (
     <div className="bg-white mx-auto max-w-md shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <h2 className="text-center text-2xl font-bold mb-8">Sign In</h2>
       {/* {} */}
-      <form onSubmit={handleLogin}>
+      <form 
+      >
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-          Username
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="email"
+          >
+            Username
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -44,7 +60,10 @@ const LoginForm = () => {
           />
         </div>
         <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="password"
+          >
             Password
           </label>
           <input
@@ -60,6 +79,7 @@ const LoginForm = () => {
           <button
             className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
+            onClick={handleLogin}
           >
             Sign In
           </button>
@@ -72,7 +92,7 @@ const LoginForm = () => {
         </div>
         <hr className="my-8 border-t" />
         <p className="text-center">
-          Don't have an account?{' '}
+          Don't have an account?{" "}
           <a
             className="inline-block align-baseline font-bold text-sm text-green-500 hover:text-green-700"
             href="#"

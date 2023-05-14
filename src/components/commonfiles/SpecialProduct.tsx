@@ -8,7 +8,7 @@ import {
   useGetByCategoriesQuery, 
   useGetProductCategoryQuery, 
   useGetSearchProductQuery
-} from "../../features/apiSlice";
+} from "../../features/productApiSlice";
 import Loading from "./Loading";
 import ErrorPage from "./ErrorPage";
 
@@ -28,7 +28,6 @@ interface Product {
   const navigate = useNavigate();
   const {
   data: allProductsData,
-  error,
   isError,
   isLoading,
   } = useGetAllProductsQuery();

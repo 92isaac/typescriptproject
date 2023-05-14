@@ -1,19 +1,29 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaFlag, FaShoppingBag } from "react-icons/fa";
 import { FiMessageSquare, FiShare2 } from "react-icons/fi";
 import img1 from "../assets/products/1.png";
+import { useDispatch } from 'react-redux';
+import { addToCart } from "../features/cartSlice";
 
-interface Props {
-  order: {
+
+interface Order {
     discountPercentage: number;
     thumbnail: string;
     stock: number;
     price: number;
-  };
+    id?:number,
+    name?:string,
+    quantity?:number
+}
+interface Props {
+order: Order
 }
 
 const ProductOrder: React.FC<Props> = ({ order }) => {
   const [orderPro, setOrderPro] = useState(1);
+  const dispatch = useDispatch()
+
+ 
   return (
     <div className="md:w-1/3 ">
       <div className="flex justify-between text-white bg-[#2A8A97] rounded py-3 px-4 gap-2">
@@ -65,7 +75,10 @@ const ProductOrder: React.FC<Props> = ({ order }) => {
 
           <div className="mt-5 block shadowbotom pb-6">
             <button className="w-full mb-2 bg-[#2A977D] text-white rounded-md">Buy Now</button>
-            <button className="w-full mb-2 border-[#2A977D] text-[#2A977D] hover:border-[#2A977D]"> <FaShoppingBag className="inline"/> Add to Cart</button>
+            <button className="w-full mb-2 border-[#2A977D] text-[#2A977D] hover:border-[#2A977D]" onClick={()=>{
+              dispatch(addToCart)
+            }}> 
+            <FaShoppingBag className="inline"/> Add to Cart</button>
           </div>
 
           <div className="my-6">

@@ -10,10 +10,10 @@ interface CartItem {
 interface CartProps {
   items: CartItem[];
   onItemRemove: (id: number) => void;
-  onQuantityChange: (id: number, quantity: number) => void;
+  // onQuantityChange: (id: number, quantity: number) => void;
 }
 
-const CartPage: React.FC<CartProps> = ({ items, onItemRemove, onQuantityChange }) => {
+const CartPage: React.FC<CartProps> = ({ items, onItemRemove }) => {
   return (
     <div className="flex flex-col lg:flex-row lg:max-w-4xl mx-auto my-4 p-4 bg-white rounded-md shadow-md">
       <div className="flex-1">
@@ -40,9 +40,9 @@ const CartPage: React.FC<CartProps> = ({ items, onItemRemove, onQuantityChange }
                       type="number"
                       min="1"
                       value={item?.quantity}
-                      onChange={(e) =>
-                        onQuantityChange(item?.id, parseInt(e.target.value))
-                      }
+                      // onChange={(e) =>
+                        // onQuantityChange(item?.id, parseInt(e.target.value))
+                      // }
                       className="w-16 h-10 rounded-md border-gray-300 text-center"
                     />
                   </div>
@@ -60,7 +60,7 @@ const CartPage: React.FC<CartProps> = ({ items, onItemRemove, onQuantityChange }
         <div className="bg-gray-100 p-4 rounded-md">
           <div className="flex justify-between mb-2">
             <div>Subtotal ({items?.length} items):</div>
-            <div>${items?.reduce((acc, item) => acc + item?.price * item?.quantity, 0).toFixed(2)}</div>
+            {/* <div>${items?.reduce((acc, item) => acc + item?.price * item?.quantity, 0).toFixed(2)}</div> */}
           </div>
           <div className="flex justify-between mb-2">
             <div>Tax:</div>
@@ -72,7 +72,7 @@ const CartPage: React.FC<CartProps> = ({ items, onItemRemove, onQuantityChange }
           </div>
           <div className="flex justify-between font-medium">
             <div>Total:</div>
-            <div>${items?.reduce((acc, item) => acc + item?.price * item?.quantity, 0).toFixed(2)}</div>
+            {/* <div>${items?.reduce((acc, item) => acc + item?.price * item?.quantity, 0).toFixed(2)}</div> */}
           </div>
         </div>
         <button className="w-full mt-4 bg-blue-500 text-white hover:bg-blue-700 py-2 rounded-md shadow-md">

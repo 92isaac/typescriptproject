@@ -4,7 +4,7 @@ import  ProductOrder  from "./ProductOrder";
 import ReviewsRating from "./ReviewsRating";
 import { useParams } from "react-router-dom";
 import NavLocation from "./navbar/NavLocation";
-import { useGetSingleProductsQuery } from "../features/apiSlice";
+import { useGetSingleProductsQuery } from "../features/productApiSlice";
 
 export const Marketplace = () => {
   const { id } =useParams()
