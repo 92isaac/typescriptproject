@@ -6,10 +6,10 @@ import { removeItem } from '../features/cartSlice';
 
 const Cart = () => {
   const cart = useSelector(selectCart);
-  console.log(cart)
+  // console.log(cart.cart)
   return (
     <>
-    <CartPage items={cart} onItemRemove={removeItem} />
+    <CartPage items={cart.cart} onItemRemove={removeItem} />
     </>
   )
 }

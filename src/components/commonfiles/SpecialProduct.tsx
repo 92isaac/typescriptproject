@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import  { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Buttons } from "./Buttons";

@@ -5,7 +5,7 @@ interface Props {
 }
 
 const ProductImageGallery: React.FC<Props> = ({ images }) => {
-  const [selectedImage, setSelectedImage] = useState<string>(images ? images[0] : "");
+  const [selectedImage, setSelectedImage] = useState<string>(images ? images[1] : "");
 
   const selectImage = (image: string) => {
     setSelectedImage(image);

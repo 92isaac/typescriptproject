@@ -13,7 +13,7 @@ const SharedLayout = () => {
 
   return (
     <>
-    <NavbarLarge setIsSidebarOpen={setIsSidebarOpen} />
+    <NavbarLarge />
     <NavbarSmall 
     setIsSidebarOpen={setIsSidebarOpen}
     isSidebarOpen={isSidebarOpen}
