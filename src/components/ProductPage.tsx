@@ -1,53 +1,70 @@
-import { useState } from "react";
+import { FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 interface Product {
-  name: string;
+  title: string;
   description: string;
-  image: string;
+  thumbnail: string;
   price: number;
+  id: number;
+  totalRating: number;
+  category: string;
+  rating: number;
 }
 
-const ProductPage = ({ product }: { product: Product }) => {
-  const [isLiked, setIsLiked] = useState<boolean>(false);
+interface Props {
+  products: Product[];
+}
 
-  const handleLike = () => {
-    setIsLiked(!isLiked);
-  };
+const ProductPage: React.FC<Props> = ({ products }) => {
+  const navigate = useNavigate();
 
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden">
-      <div className="px-4 py-5 sm:px-6 sm:py-8">
-        <h1 className="text-center text-3xl font-semibold leading-tight">
-          {product?.name}
-        </h1>
-        <p className="text-center text-lg leading-relaxed">
-          {product?.description}
-        </p>
-      </div>
-      <div className="flex justify-between items-center bg-gray-200 py-5 sm:py-6">
-        <div className="flex items-center">
-          <img src={product?.image} alt={product?.name} className="w-20 h-20 rounded-full" />
-          <div className="ml-3">
-            <button
-              className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md"
-              onClick={handleLike}
-            >
-              {isLiked ? "Unlike" : "Like"}
-            </button>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 className="text-4xl font-bold mb-8">Products</h1>
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      {products.map((product: Product) => (
+        <div
+          className="border shadow mb-6"
+          key={product?.id}
+          onClick={() => {
+            navigate("/" + product?.id);
+          }}
+        >
+          <div className="bg-[#EAEFF5]">
+            <img
+              src={product?.thumbnail}
+              alt=""
+              className="object-cover w-[90%] h-28 mx-auto transform hover:scale-105 transition duration-500 ease-in-out"
+            />
+          </div>
+          <div className="text-sm px-2">
+            <p className="mt-1">{product?.category}</p>
+            <h4 className="my-3 font-bold text-xs">
+              {product?.description.slice(0, 60)}...
+            </h4>
+            <div className="flex text-sm justify-between pb-2">
+              <h3 className="text-[#349C83] font-medium">${product.price}</h3>
+              <p className="text-xs text-gray-400 py-1">
+                <FaStar className="inline text-yellow-400 " /> {product?.rating}{" "}
+                | {product?.totalRating}{" "}
+              </p>
+            </div>
+          </div>
+          <div className="w-3/4 px-2 pb-3">
+            <div className="relative h-2 bg-gray-200 rounded-full mx-auto my-0">
+              <div
+                className="absolute top-0 left-0 h-full bg-red-400 rounded-full"
+                // style={{
+                //   width: `${calPercentageRating(product?.rating)}%`,
+                // }}
+              ></div>
+            </div>
           </div>
         </div>
-        <div className="flex items-center">
-          <span className="text-gray-500">
-            $ {product?.price}
-          </span>
-          <button
-            className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md"
-            // onClick={() => {}}
-          >
-            Add to Cart
-          </button>
-        </div>
-      </div>
+      ))}
+      ;
+    </div>
     </div>
   );
 };

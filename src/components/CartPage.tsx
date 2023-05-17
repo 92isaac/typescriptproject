@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface CartItem {
   id: number;
@@ -16,6 +17,7 @@ interface CartProps {
 
 
 const CartPage: React.FC<CartProps> = ({ items, onItemRemove }) => {
+  const navigate = useNavigate()
   return (
     <div className="flex flex-col lg:flex-row lg:max-w-4xl mx-auto my-4 p-4 bg-white rounded-md shadow-md">
       <div className="flex-1">
@@ -77,8 +79,11 @@ const CartPage: React.FC<CartProps> = ({ items, onItemRemove }) => {
             {/* <div>${items?.reduce((acc, item) => acc + item?.price * item?.quantity, 0).toFixed(2)}</div> */}
           </div>
         </div>
-        <button className="w-full mt-4 bg-blue-500 text-white hover:bg-blue-700 py-2 rounded-md shadow-md">
+        <button className="w-full mt-4 bg-[#349C83] text-white hover:bg-[#2A977D] py-2 rounded-md shadow-md">
           Checkout
+        </button>
+        <button className="w-full mt-4 bg-[#2A977D] text-white hover:bg-[#349C83] py-2 rounded-md shadow-md" onClick={()=>navigate('/products')}>
+          Continue Shopping
         </button>
       </div>
     </div>

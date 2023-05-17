@@ -35,6 +35,11 @@ const LoginForm = () => {
       dispatch(setUser({token:loginData.token, name:loginData.firstName}))
       navigate('/')
     }
+    if(isLoginError){
+      toast.error('Something went wrong');
+      navigate('/signin')
+    }
+    
   }, [isLoginSuccess]);
 
   return (

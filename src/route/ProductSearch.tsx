@@ -13,7 +13,7 @@ const ProductSearch = () => {
     <div>
     {result 
     ? <ProductSearchResult products={result} /> 
-    : (<ErrorPage />)
+    : (<ErrorPage message='Something went wrong'/>)
     }
     </div>
   )

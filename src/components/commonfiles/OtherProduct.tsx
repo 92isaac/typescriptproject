@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { FaStar } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,6 +18,25 @@ interface Props {
 
 export const OtherProduct: React.FC<Props> = ({ product }) => {
   const navigate = useNavigate();
+
+
+  const [isWaiting, setIsWaiting] = useState(false);
+
+    const handleClick =()=> {
+        setIsWaiting(true);
+      }
+
+      useEffect(() => {
+        let timeoutId:any;
+    
+        if (isWaiting) {
+          timeoutId = setTimeout(() => {
+            navigate('/products');
+          }, 5000);
+        }
+    
+        return () => clearTimeout(timeoutId);
+      }, [isWaiting, navigate]);
 
   return (
     <div>
@@ -57,7 +76,7 @@ export const OtherProduct: React.FC<Props> = ({ product }) => {
       </div>
 
       <div className="mx-auto mt-8">
-        <button className="block">Load More</button>
+        <button className="block" onClick={handleClick} disabled={isWaiting}>{isWaiting ? 'Please wait...' : 'Load More'}</button>
       </div>
     </div>
   );

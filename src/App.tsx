@@ -12,6 +12,7 @@ import { useAppDispatch } from "./constant/hooks.ts";
 import { setUser } from "./features/authSlice.ts";
 // import AllProduct from "./route/AllProduct.tsx";
 import HeroSection from "./route/HeroSection.tsx";
+import AllProduct from "./route/AllProduct.tsx";
 
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
       <Route path="/searchresult" element={<ProductSearch/>} />
       <Route path="/cart" element={<Cart/>} />
       <Route path="/signin" element={<SignIn/>} />
-      <Route path="/products" element={<HeroSection/>} />
+      <Route path="/products" element={<AllProduct/>} />
       </Route>
     </Routes>
     </div>}

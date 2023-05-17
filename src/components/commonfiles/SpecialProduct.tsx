@@ -130,7 +130,7 @@ interface Product {
         </div>
        <div>
       <button
-        className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
+        className="px-4 py-2 text-sm font-medium text-white bg-[#349C83] rounded-md hover:bg-[#2A977D]"
         onClick={openModal}
       >
         Click to view more product by category

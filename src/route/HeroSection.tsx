@@ -1,16 +1,9 @@
-import { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
-    const [randValue, setRandValue ] = useState(Math.floor(Math.random()))
+    const randValue = (Math.floor(Math.random() * 1000))
   const randomImage = `https://picsum.photos/id/${randValue}/500/500`;
 
-//   useEffect(()=>{
-//     const interval = setInterval(()=>{
-//         setRandValue((prev)=> prev * 900)
-//     }, 3000)
-
-//     return () => clearInterval(interval);
-//   }, [])
 
   console.log(randValue)
   return (
@@ -28,80 +21,31 @@ const HeroSection = () => {
           </svg>
 
           <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
-            <nav className="relative flex items-center justify-between sm:h-10 lg:justify-start">
-              <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
-                <div className="flex items-center justify-between w-full md:w-auto">
-                  <a href="#">
-                    <span className="sr-only text-red-700">Workflow</span>
-                    <img
-                      className="h-8 w-auto sm:h-10"
-                      src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                      alt=""
-                    />
-                  </a>
-                  <div className="-mr-2 flex items-center md:hidden">
-                    <button
-                      type="button"
-                      className="bg-gray-50 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-                      id="main-menu"
-                      aria-haspopup="true"
-                    >
-                      <span className="sr-only">Open main menu</span>
-                      <svg
-                        className="h-6 w-6"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4 6h16M4 12h16M4 18h16"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
-                <a href="#" className="font-medium text-gray-500 hover:text-gray-900">
-                  Women
-                </a>
-                <a href="#" className="font-medium text-gray-500 hover:text-gray-900">
-                  Men
-                </a>
-                <a href="#" className="font-medium text-gray-500 hover:text-gray-900">
-                  Kids
-                </a>
-              </div>
-            </nav>
+            
           </div>
 
           <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 xl:mt-28">
             <div className="sm:text-center lg:text-left">
               <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
                 <span className="block">Shop the latest trends</span>
-                <span className="block text-indigo-600">at our store</span>
+                <span className="block text-[#349C83]">at our store</span>
               </h1>
               <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                 Discover our wide range of products for women, men, and kids. From clothing and accessories to beauty and homeware, we have everything you need to update your style for the season.
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
-                  <a
-                    href="#"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
+                  <Link
+                    to="/products"
+                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#349C83] hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
                   >
                     Shop now
-                  </a>
+                  </Link>
                 </div>
                 <div className="mt-3 sm:mt-0 sm:ml-3">
                   <a
                     href="#"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10"
+                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-[#349C83] bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10"
                   >
                     Learn more
                   </a>

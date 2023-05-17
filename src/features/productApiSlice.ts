@@ -9,6 +9,9 @@ export const productApiSlice = createApi({
         getAllProducts : builder.query({
             query: ()=> "/products",        
         }),
+        getPaginateProduct : builder.query({
+            query: (pagin)=> `/products?limit=${pagin}`,        
+        }),
         getSingleProducts : builder.query({
             query: (singleproduct)=> `/products/${singleproduct}`,        
         }),
@@ -25,5 +28,5 @@ export const productApiSlice = createApi({
     
 })
 
-export const { useGetAllProductsQuery, useGetProductCategoryQuery, useGetSearchProductQuery, useGetByCategoriesQuery, useGetSingleProductsQuery } = productApiSlice
+export const { useGetAllProductsQuery, useGetProductCategoryQuery, useGetSearchProductQuery, useGetByCategoriesQuery, useGetSingleProductsQuery, useGetPaginateProductQuery } = productApiSlice
 
