@@ -12,7 +12,6 @@ const LoginForm = () => {
       data: loginData,
       isSuccess: isLoginSuccess,
       isError: isLoginError,
-      error: loginError,
     },
   ] = useLoginUserMutation();
   const [username, setUsername] = useState("");

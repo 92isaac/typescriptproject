@@ -5,7 +5,7 @@ export const searchSlice = createSlice({
     name: 'productSearch',
     initialState,
     reducers: {
-        searchResult:(state, action)=>{
+        searchResult:(_state, action)=>{
             return action.payload
         }
     }

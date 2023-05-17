@@ -10,8 +10,6 @@ import ProductSearch from "./route/ProductSearch.tsx";
 import SignIn from "./route/SignIn.tsx";
 import { useAppDispatch } from "./constant/hooks.ts";
 import { setUser } from "./features/authSlice.ts";
-// import AllProduct from "./route/AllProduct.tsx";
-import HeroSection from "./route/HeroSection.tsx";
 import AllProduct from "./route/AllProduct.tsx";
 
 
