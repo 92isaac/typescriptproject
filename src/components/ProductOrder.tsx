@@ -76,6 +76,7 @@ const ProductOrder: React.FC<Props> = ({ order }) => {
           <div className="mt-5 block shadowbotom pb-6">
             <button className="w-full mb-2 bg-[#2A977D] text-white rounded-md">Buy Now</button>
             <button className="w-full mb-2 border-[#2A977D] text-[#2A977D] hover:border-[#2A977D]" onClick={()=>{
+              console.log('Cliked me')
               dispatch(addToCart)
             }}> 
             <FaShoppingBag className="inline"/> Add to Cart</button>

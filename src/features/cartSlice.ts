@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
+// import { getDefaultCart } from '../constant/helpers';
 
 interface Item {
   id: number;
@@ -12,6 +13,8 @@ interface CartState {
   cart: Item[];
 }
 
+// const cart = getDefaultCart()
+
 const initialState: CartState = {
   cart: [],
 };
@@ -23,6 +26,7 @@ export const cartSlice = createSlice({
     addToCart: (state, action: PayloadAction<Item>) => {
       const itemInCart = state.cart.find((item) => item.id === action.payload.id);
       if (itemInCart) {
+        console.log(itemInCart)
         itemInCart.quantity++;
       } else {
         state.cart.push({ ...action.payload, quantity: 1 });

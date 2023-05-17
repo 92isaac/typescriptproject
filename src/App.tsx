@@ -10,6 +10,8 @@ import ProductSearch from "./route/ProductSearch.tsx";
 import SignIn from "./route/SignIn.tsx";
 import { useAppDispatch } from "./constant/hooks.ts";
 import { setUser } from "./features/authSlice.ts";
+// import AllProduct from "./route/AllProduct.tsx";
+import HeroSection from "./route/HeroSection.tsx";
 
 
 function App() {
@@ -39,6 +41,7 @@ function App() {
       <Route path="/searchresult" element={<ProductSearch/>} />
       <Route path="/cart" element={<Cart/>} />
       <Route path="/signin" element={<SignIn/>} />
+      <Route path="/products" element={<HeroSection/>} />
       </Route>
     </Routes>
     </div>}

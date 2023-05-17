@@ -9,6 +9,7 @@ import { useGetSingleProductsQuery } from "../features/productApiSlice";
 export const Marketplace = () => {
   const { id } =useParams()
   const {data: singleproduct } = useGetSingleProductsQuery(id)
+
   
   // const displayitems = singleproduct.products.id
   console.log(singleproduct)

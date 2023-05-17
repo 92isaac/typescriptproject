@@ -11,6 +11,7 @@ import {
 } from "../../features/productApiSlice";
 import Loading from "./Loading";
 import ErrorPage from "./ErrorPage";
+import Modal from "./Modal";
 
 
 interface Product {
@@ -24,14 +25,24 @@ interface Product {
   }
   
   const SpecialProduct = (): JSX.Element => {
+    const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   const [categoryp, setCategory] = useState<string>("smartphones");
   const navigate = useNavigate();
   const {
   data: allProductsData,
   isError,
   isLoading,
-  } = useGetAllProductsQuery();
-  const { data: allCategory } = useGetProductCategoryQuery();
+  } = useGetAllProductsQuery(null);
+  const { data: allCategory } = useGetProductCategoryQuery(null);
   const {data: searchQuery } = useGetSearchProductQuery(categoryp)
   const { data: productByCategory } = useGetByCategoriesQuery(categoryp);
   console.log(productByCategory);
@@ -116,15 +127,28 @@ interface Product {
           )}
           {isError ? <ErrorPage message={`Some thing went wrong`} /> : null}
         </div>
-        <div className="md:grid md:grid-cols-5 md:mt-16">
+       <div>
+      <button
+        className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
+        onClick={openModal}
+      >
+        Click to view more product by category
+      </button>
+
+      <Modal isOpen={isOpen} onClose={closeModal}>
+      <div className="md:grid md:grid-cols-5 md:mt-16">
           {allCategory?.map((categ:any, index: number) => (
             <Buttons
               key={index}
-              click={() => setCategory(categ)}
+              click={() => {setCategory(categ); 
+                closeModal()
+              }}
               name={categ}
             />
           ))}
         </div>
+      </Modal>
+    </div>
         {/* <OtherProduct product={productByCategory?.products}/> */}
         {
           isLoading ? (<Loading />) :

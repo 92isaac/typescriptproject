@@ -13,6 +13,8 @@ interface CartProps {
   // onQuantityChange: (id: number, quantity: number) => void;
 }
 
+
+
 const CartPage: React.FC<CartProps> = ({ items, onItemRemove }) => {
   return (
     <div className="flex flex-col lg:flex-row lg:max-w-4xl mx-auto my-4 p-4 bg-white rounded-md shadow-md">
@@ -20,8 +22,8 @@ const CartPage: React.FC<CartProps> = ({ items, onItemRemove }) => {
         <h2 className="text-lg font-medium mb-4">Your Cart ({items?.length})</h2>
         {items?.length > 0 ? (
           <ul>
-            {items.map((item) => (
-              <li key={item.id} className="flex mb-4">
+            {items?.map((item) => (
+              <li key={item?.id} className="flex mb-4">
                 <div className="flex-shrink-0 w-16 h-16 bg-gray-200 rounded-md mr-4"></div>
                 <div className="flex-1">
                   <div className="flex justify-between items-center mb-2">

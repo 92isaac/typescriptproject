@@ -2,19 +2,16 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_URL } from '../constant/helpers';
 
 
-// const API_URL = 'https://dummyjson.com/auth';
-// console.log(API_URL + '/login')
-
-export const authApi = createApi({
-    reducerPath: "authApi",
+export const cartApi = createApi({
+    reducerPath: "cartApi",
     baseQuery: fetchBaseQuery({
         baseUrl: API_URL
     }),
     endpoints: (builder)=>({
-        loginUser: builder.mutation({
-            query:(body: {username: string; password: string}) =>{
+        addCart: builder.mutation({
+            query:(body: {id: number; quantity: number}) =>{
                 return {
-                    url:"/auth/login",
+                    url:"/carts/add",
                     method: "POST",
                     body,
                 }
@@ -23,4 +20,4 @@ export const authApi = createApi({
     })
 })
 
-export const { useLoginUserMutation } = authApi
+export const { useAddCartMutation } = cartApi
