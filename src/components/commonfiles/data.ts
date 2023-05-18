@@ -1,7 +1,9 @@
+import { IconType } from 'react-icons'
 import img1 from '../../assets/products/1.png'
 import img2 from '../../assets/products/2.png'
 import img3 from '../../assets/products/3.png'
 import img4 from '../../assets/products/5.png'
+import { FaHome, FaShoppingCart, FaUser, FaSignInAlt } from 'react-icons/fa'
 
 interface Testimonies {
   product: string;
@@ -29,7 +31,7 @@ interface Lists {
   id: number;
   path: string;
   title: string;
-  icon: string;
+  icon: JSX.Element ;
 
  
 }
@@ -175,34 +177,30 @@ export const navlinks: Lists[] =[
         id:1,
         path: '/',
         title: 'Home',
-        icon: '',
+        icon: FaHome,
     }, 
     {
         id:2,
         path: '/cart',
         title: 'Cart',
-        icon: '',
+        icon: FaHome,
+
 
     }, 
     {
         id:3,
         path: '/products',
         title: 'Products',
-        icon: '',
+        icon: FaHome,
+
 
     }, 
     {
         id:4,
-        path: '/login',
-        title: 'Login',
-        icon: '',
-
-    }, 
-    {
-        id:5,
         path: '/profile',
         title: 'Profile',
-        icon: '',
+        icon: FaHome,
+
 
     },
 ]

@@ -46,7 +46,7 @@ export const OtherProduct: React.FC<Props> = ({ product }) => {
             className="border shadow md:w-1/6"
             key={products.id}
             onClick={() => {
-              navigate('/' + products.id);
+              navigate('/product/' + products.id);
             }}
           >
             <div className="bg-[#EAEFF5]">

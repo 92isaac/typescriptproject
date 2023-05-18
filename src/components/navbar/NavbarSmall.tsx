@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { FiSearch, FiBell, FiMessageSquare } from 'react-icons/fi';
-import { useLocation } from 'react-router-dom';
-
+import { useState } from "react";
+import { FiSearch, FiBell, FiMessageSquare } from "react-icons/fi";
+import { useLocation } from "react-router-dom";
 
 type Props = {
   isSidebarOpen: boolean;
@@ -12,12 +11,16 @@ const NavbarSmall: React.FC<Props> = ({ isSidebarOpen }) => {
   const [notificationCount] = useState<number>(5);
   const [messageCount] = useState<number>(2);
 
-  const {pathname} = useLocation()
-  if(pathname === '/') return null
+  const { pathname } = useLocation();
+  if (pathname === "/") return null;
 
   return (
     <div
-      className={`${isSidebarOpen ? 'fixed flex z-50 justify-between items-center px-4 py-2 bg-white shadow-lg w-full' : 'fixed flex justify-between items-center px-4 py-2 bg-white shadow-lg md:hidden w-full'}`}
+      className={`${
+        isSidebarOpen
+          ? "fixed flex z-50 justify-between items-center px-4 py-2 bg-white shadow-lg w-full"
+          : "fixed flex justify-between items-center px-4 py-2 bg-white shadow-lg md:hidden w-full"
+      }`}
     >
       <div className="flex items-center justify-center w-1/3">
         <span className="text-gray-400">
@@ -50,12 +53,11 @@ const NavbarSmall: React.FC<Props> = ({ isSidebarOpen }) => {
             </div>
           )}
 
-            {/* <Dropdown options={navlinks}/> */}
+          {/* <Dropdown options={navlinks}/> */}
         </div>
       </div>
     </div>
   );
-}
+};
 
-
-export default NavbarSmall
+export default NavbarSmall;

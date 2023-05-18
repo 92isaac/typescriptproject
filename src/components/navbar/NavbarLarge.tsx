@@ -3,18 +3,18 @@ import { FaShoppingCart, FaMapMarkerAlt, FaBell } from "react-icons/fa";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
-// import { useGetSearchProductQuery } from "../../features/apiSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchResult } from "../../features/searchSlice";
 import Logo from "../commonfiles/Logo";
+import { selectAuth } from "../../features/authSlice";
 
 const NavbarLarge = () => {
   // const [isOpen, setIsOpen] = useState(false);
+  const {token, name} = useSelector(selectAuth)
   const [searchData, setSearch] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
 
   const options = [
     { value: "23,234.6", change: "+0.005%", currency: "btc" },
@@ -100,7 +100,7 @@ const NavbarLarge = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="hidden  md:container md:mx-auto md:py-4 md:flex md:justify-between md:items-center">
             {/* Logo with shop icon */}
-          <Logo />
+            <Logo />
             {/* Location icon with "deliver to" text */}
             <div className="flex items-center">
               <div className="text-xl mr-2">
@@ -152,7 +152,10 @@ const NavbarLarge = () => {
 
             {/* Avatar for account dropdown */}
             <div className="text-xl relative">
+              <div className="flex justify-center">
+                <h2>Welcome {token? `${name}` : 'Anonymous'}</h2>
               <HiOutlineUserCircle onClick={handleModalToggle} />
+              </div>
               {isModalOpen && (
                 <div className="absolute top-full left-0 z-50 -ml-52 mt-8 w-60 max-h-200 overflow-y-auto border border-gray-300 rounded bg-gray-900">
                   {options?.map((option, index) => (

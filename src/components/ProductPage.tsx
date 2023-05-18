@@ -28,7 +28,7 @@ const ProductPage: React.FC<Props> = ({ products }) => {
           className="border shadow mb-6"
           key={product?.id}
           onClick={() => {
-            navigate("/" + product?.id);
+            navigate("/product/" + product?.id);
           }}
         >
           <div className="bg-[#EAEFF5]">

@@ -86,7 +86,7 @@ interface Product {
                 className="border shadow md:w-1/6 mb-6"
                 key={product?.id}
                 onClick={() => {
-                  navigate("/" + product?.id);
+                  navigate("/product/" + product?.id);
                 }}
               >
                 <div className="bg-[#EAEFF5]">

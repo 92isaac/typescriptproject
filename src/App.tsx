@@ -43,7 +43,7 @@ function App() {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
       <Route index element={<Home/>} />
-      <Route path="/:id" element={<Marketplace/>} />
+      <Route path="/product/:id" element={<Marketplace/>} />
       <Route path="/searchresult" element={<ProductSearch/>} />
       <Route path="/cart" element={<ProtectedRoute><Cart/></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
