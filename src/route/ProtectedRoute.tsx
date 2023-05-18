@@ -1,12 +1,16 @@
-import { Navigate, Outlet } from "react-router-dom"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useSelector } from "react-redux"
+import { selectAuth } from "../features/authSlice"
+import LoadingRedirect from "../components/LoadingRedirect"
 
-const RequireAuth = () => {
-    const token = ''
+
+const ProtectedRoute = ({children}: {children:any}) => {
+    const {token} = useSelector(selectAuth)
 
     return (
         token
-            ? <Outlet />
-            : <Navigate to="/login" state={{ from: location }} replace />
+            ? children
+            : <LoadingRedirect />
     )
 }
-export default RequireAuth
+export default ProtectedRoute

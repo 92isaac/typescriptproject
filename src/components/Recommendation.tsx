@@ -16,7 +16,7 @@ export const Recommendation = () => {
   return (
     <div className="mt-4">
       <h3 className="font-bold">Recommendation</h3>
-      <div className="grid grid-cols-2 md:flex md:flex-wrap md:justify-between gap-1 mt-6">
+      <div className="grid grid-cols-2 md:flex md:flex-wrap md:justify-between gap-4 mt-6">
         {product.map((products: Product) => (
           <div
             className="border shadow md:w-1/6"

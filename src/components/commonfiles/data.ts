@@ -25,6 +25,14 @@ interface Product {
   rating: string;
   totalRating: string;
 }
+interface Lists {
+  id: number;
+  path: string;
+  title: string;
+  icon: string;
+
+ 
+}
 
 export const images: string[] = [img1, img2, img3, img4];
 
@@ -157,4 +165,44 @@ export const product: Product[] =[
         totalRating:"2500"
     }, 
 
+]
+
+
+
+
+export const navlinks: Lists[] =[
+    {
+        id:1,
+        path: '/',
+        title: 'Home',
+        icon: '',
+    }, 
+    {
+        id:2,
+        path: '/cart',
+        title: 'Cart',
+        icon: '',
+
+    }, 
+    {
+        id:3,
+        path: '/products',
+        title: 'Products',
+        icon: '',
+
+    }, 
+    {
+        id:4,
+        path: '/login',
+        title: 'Login',
+        icon: '',
+
+    }, 
+    {
+        id:5,
+        path: '/profile',
+        title: 'Profile',
+        icon: '',
+
+    },
 ]

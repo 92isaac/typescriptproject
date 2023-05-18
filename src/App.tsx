@@ -13,6 +13,8 @@ import { setUser } from "./features/authSlice.ts";
 import AllProduct from "./route/AllProduct.tsx";
 import NotFoundPage from "./route/NotFound.tsx";
 import ScrollToTop from "./constant/ScrollToTop.tsx";
+import Profile from "./route/Profile.tsx";
+import ProtectedRoute from "./route/ProtectedRoute.tsx";
 
 
 function App() {
@@ -43,8 +45,9 @@ function App() {
       <Route index element={<Home/>} />
       <Route path="/:id" element={<Marketplace/>} />
       <Route path="/searchresult" element={<ProductSearch/>} />
-      <Route path="/cart" element={<Cart/>} />
-      <Route path="/signin" element={<SignIn/>} />
+      <Route path="/cart" element={<ProtectedRoute><Cart/></ProtectedRoute>} />
+      <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
+      <Route path="/login" element={<SignIn/>} />
       <Route path="/products" element={<AllProduct/>} />
       <Route path="*" element={<NotFoundPage/>} />
       </Route>

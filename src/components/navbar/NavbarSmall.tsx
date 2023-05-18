@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { FiSearch, FiBell, FiMessageSquare } from 'react-icons/fi';
+import { useLocation } from 'react-router-dom';
+
 
 type Props = {
   isSidebarOpen: boolean;
@@ -7,12 +9,11 @@ type Props = {
 };
 
 const NavbarSmall: React.FC<Props> = ({ isSidebarOpen }) => {
-  // const closeSidebar = () => {
-  //   setIsSidebarOpen(false);
-  // };
-  // State variables to hold notification and message counts
   const [notificationCount] = useState<number>(5);
   const [messageCount] = useState<number>(2);
+
+  const {pathname} = useLocation()
+  if(pathname === '/') return null
 
   return (
     <div
@@ -49,7 +50,7 @@ const NavbarSmall: React.FC<Props> = ({ isSidebarOpen }) => {
             </div>
           )}
 
-
+            {/* <Dropdown options={navlinks}/> */}
         </div>
       </div>
     </div>
