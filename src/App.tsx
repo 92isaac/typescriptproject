@@ -11,6 +11,8 @@ import SignIn from "./route/SignIn.tsx";
 import { useAppDispatch } from "./constant/hooks.ts";
 import { setUser } from "./features/authSlice.ts";
 import AllProduct from "./route/AllProduct.tsx";
+import NotFoundPage from "./route/NotFound.tsx";
+import ScrollToTop from "./constant/ScrollToTop.tsx";
 
 
 function App() {
@@ -28,11 +30,14 @@ function App() {
     }, 1500);
   }, []);
 
-
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <>
     {loading ? (<InitialSpinner load={loading} />) : <div>
+      <ScrollToTop/>
     <Routes>
       <Route path="/" element={<SharedLayout />}>
       <Route index element={<Home/>} />
@@ -41,6 +46,7 @@ function App() {
       <Route path="/cart" element={<Cart/>} />
       <Route path="/signin" element={<SignIn/>} />
       <Route path="/products" element={<AllProduct/>} />
+      <Route path="*" element={<NotFoundPage/>} />
       </Route>
     </Routes>
     </div>}
