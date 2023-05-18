@@ -6,10 +6,10 @@ type Props = {
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const NavbarSmall: React.FC<Props> = ({ isSidebarOpen, setIsSidebarOpen }) => {
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
+const NavbarSmall: React.FC<Props> = ({ isSidebarOpen }) => {
+  // const closeSidebar = () => {
+  //   setIsSidebarOpen(false);
+  // };
   // State variables to hold notification and message counts
   const [notificationCount] = useState<number>(5);
   const [messageCount] = useState<number>(2);
