@@ -31,7 +31,7 @@ const LoginForm = () => {
   useEffect(()=>{
     if(isLoginSuccess){
       toast.success('Login Success');
-      dispatch(setUser({token:loginData.token, name:loginData.firstName}))
+      dispatch(setUser({token:loginData.token, name:loginData.firstName, email:loginData.email, firstName:loginData.firstName, lastName:loginData.last, image:loginData.image, gender:loginData.gender}))
       navigate('/')
     }
     if(isLoginError){
