@@ -5,6 +5,7 @@ import img1 from "../assets/products/1.png";
 import { useDispatch } from 'react-redux';
 import { addToCart } from "../features/cartSlice";
 import { useNavigate } from "react-router-dom";
+// import { useAddCartMutation } from "../features/cartApiSlice";
 
 
 interface Order {
@@ -22,6 +23,7 @@ order: Order
 
 const ProductOrder: React.FC<Props> = ({ order }) => {
   const [orderPro, setOrderPro] = useState(1);
+  // const { data:addCart } = useAddCartMutation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
 

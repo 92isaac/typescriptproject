@@ -21,7 +21,7 @@ function App() {
   const dispatch = useAppDispatch()
   const user = JSON.parse(localStorage.getItem("user") || "{}")
   const [loading, setLoading] = useState(false);
-
+console.log(user)
   useEffect(()=>{
     dispatch(setUser(user));
   }, [])

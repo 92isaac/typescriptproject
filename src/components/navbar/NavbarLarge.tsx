@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaShoppingCart, FaMapMarkerAlt, FaBell } from "react-icons/fa";
-import { HiOutlineUserCircle } from "react-icons/hi";
+// import { HiOutlineUserCircle } from "react-icons/hi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,12 +10,13 @@ import { selectAuth } from "../../features/authSlice";
 
 const NavbarLarge = () => {
   // const [isOpen, setIsOpen] = useState(false);
-  const {token, name} = useSelector(selectAuth)
+  const {token, name, image} = useSelector(selectAuth)
   const [searchData, setSearch] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  console.log(image);
   const options = [
     { value: "23,234.6", change: "+0.005%", currency: "btc" },
     { value: "1,791.34", change: "-0.003%", currency: "eth" },
@@ -154,7 +155,7 @@ const NavbarLarge = () => {
             <div className="text-xl relative">
               <div className="flex justify-center">
                 <h2>Welcome {token? `${name}` : 'Anonymous'}</h2>
-              <HiOutlineUserCircle onClick={handleModalToggle} />
+              <img src={image?.toString()} className="rounded-sm" alt={image?.toString()} onClick={handleModalToggle} />
               </div>
               {isModalOpen && (
                 <div className="absolute top-full left-0 z-50 -ml-52 mt-8 w-60 max-h-200 overflow-y-auto border border-gray-300 rounded bg-gray-900">

@@ -6,6 +6,7 @@ import { removeItem } from '../features/cartSlice';
 
 const Cart = () => {
   const cart = useSelector(selectCart);
+  console.log(cart.cart)
   return (
     <>
     <CartPage items={cart.cart} onItemRemove={removeItem} />
