@@ -33,7 +33,7 @@ const NavbarSmall: React.FC<Props> = ({ isSidebarOpen }) => {
       className={`${
         isSidebarOpen
           ? "fixed flex z-50 justify-between items-center px-4 py-2 bg-white shadow-lg w-full"
-          : "fixed flex justify-between items-center px-4 py-2 bg-white shadow-lg md:hidden w-full"
+          : "fixed flex justify-between items-center px-4 py-2 bg-white shadow-lg md:hidden w-full z-50"
       }`}
     >
       <div className="flex items-center justify-center w-2/3 ">
