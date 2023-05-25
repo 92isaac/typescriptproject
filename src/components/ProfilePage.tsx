@@ -1,26 +1,41 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { selectAuth } from "../features/authSlice";
 
 const ProfilePage: React.FC = () => {
-  return (
+  const {token, name, image, email, lastName, address, birthDate, phone} = useSelector(selectAuth)
+
+return (
     <div className="bg-gray-100 min-h-screen py-10">
       <div className="container mx-auto px-4">
         <div className="flex flex-col gap-4 md:flex-row">
           <div className="md:w-1/3">
             <div className="bg-white p-6 rounded-lg shadow-md mb-4">
               <img
-                src="profile.jpg"
+                src={token ? `${image}` : `profile.image`}
                 alt="Profile"
                 className="w-40 h-40 object-cover rounded-full mx-auto mb-4"
               />
-              <h2 className="text-2xl font-bold text-center mb-2">John Doe</h2>
-              <p className="text-gray-500 text-center">john.doe@example.com</p>
+              <h2 className="text-2xl font-bold text-center mb-2">{name} {lastName}</h2>
+              <p className="text-gray-500 text-center">{email}</p>
               <div className="flex justify-center mt-6">
                 <button className="px-4 py-2 bg-indigo-500 text-white rounded-md">
                   Edit Profile
                 </button>
               </div>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <div className="bg-white p-6 rounded-lg shadow-md mb-3">
+              <h3 className="text-xl font-bold mb-4">Date of Birth</h3>
+              <p className="text-gray-500">{birthDate}</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md mb-3">
+              <h3 className="text-xl font-bold mb-4">Shipping Address</h3>
+              <p className="text-gray-500">{address}</p>
+              <hr />
+              <h3 className="text-xl font-bold mb-4">Phone</h3>
+              <p className="text-gray-500">{phone}</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md mb-3">
               <h3 className="text-xl font-bold mb-4">Shipping Address</h3>
               <p className="text-gray-500">123 Street, City, State, ZIP Code</p>
             </div>

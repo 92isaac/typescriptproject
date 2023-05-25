@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { searchResult } from "../../features/searchSlice";
 import Logo from "../commonfiles/Logo";
 import { selectAuth } from "../../features/authSlice";
+// import { useAppSelector } from "../../constant/hooks";
+import { RootState } from "../../features/store";
 
 const NavbarLarge = () => {
   // const [isOpen, setIsOpen] = useState(false);
   const {token, name, image} = useSelector(selectAuth)
-  const [searchData, setSearch] = useState("");
+  const searchValue = useSelector((state: RootState) => state.search.searchValue);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,9 +37,9 @@ const NavbarLarge = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    dispatch(searchResult({ searchData }));
+    dispatch(searchResult);
     navigate("/searchresult");
-    setSearch("");
+    dispatch(searchResult(''))
   };
 
   return (
@@ -120,8 +122,8 @@ const NavbarLarge = () => {
             {/* Search input field and button */}
             <div className="relative">
               <input
-                value={searchData}
-                onChange={(e) => setSearch(e.target.value)}
+                value={searchValue}
+                onChange={(event:React.ChangeEvent<HTMLInputElement>)=>{dispatch(searchResult(event.target.value))}}
                 type="text"
                 placeholder="Search for products"
                 className="rounded py-1.5 pl-6 pr-12 w-90 border-2 bg-[#161828] border-[#363741] border-transparent  focus:outline-none transition-colors duration-300"
@@ -155,7 +157,7 @@ const NavbarLarge = () => {
             <div className="text-xl relative">
               <div className="flex justify-center">
                 <h2>Welcome {token? `${name}` : 'Anonymous'}</h2>
-              <img src={image?.toString()} className="rounded-sm" alt={image?.toString()} onClick={handleModalToggle} />
+              <img src={image?.toString()} className="rounded-full w-10 h-10 bg-white" alt={image?.toString()} onClick={handleModalToggle} />
               </div>
               {isModalOpen && (
                 <div className="absolute top-full left-0 z-50 -ml-52 mt-8 w-60 max-h-200 overflow-y-auto border border-gray-300 rounded bg-gray-900">

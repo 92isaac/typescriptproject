@@ -1,19 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import  { useState } from "react";
+import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Buttons } from "./Buttons";
 import { OtherProduct } from "./OtherProduct";
 import { useNavigate } from "react-router-dom";
 import {
   useGetAllProductsQuery,
-  useGetByCategoriesQuery, 
-  useGetProductCategoryQuery, 
-  useGetSearchProductQuery
+  useGetByCategoriesQuery,
+  useGetProductCategoryQuery,
+  useGetSearchProductQuery,
 } from "../../features/productApiSlice";
 import Loading from "./Loading";
 import ErrorPage from "./ErrorPage";
 import Modal from "./Modal";
-
 
 interface Product {
   id: string;
@@ -23,10 +22,10 @@ interface Product {
   price: number;
   rating: number;
   totalRating: number;
-  }
-  
-  const SpecialProduct = (): JSX.Element => {
-    const [isOpen, setIsOpen] = useState(false);
+}
+
+const SpecialProduct = (): JSX.Element => {
+  const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
     setIsOpen(true);
@@ -39,19 +38,19 @@ interface Product {
   const [categoryp, setCategory] = useState<string>("smartphones");
   const navigate = useNavigate();
   const {
-  data: allProductsData,
-  isError,
-  isLoading,
+    data: allProductsData,
+    isError,
+    isLoading,
   } = useGetAllProductsQuery(null);
   const { data: allCategory } = useGetProductCategoryQuery(null);
-  const {data: searchQuery } = useGetSearchProductQuery(categoryp)
+  const { data: searchQuery } = useGetSearchProductQuery(categoryp);
   const { data: productByCategory } = useGetByCategoriesQuery(categoryp);
   console.log(productByCategory);
   console.log(searchQuery);
-  
+
   const calPercentageRting = (rate: number): number => {
-  const rateVal = (rate / 5) * 100;
-  return rateVal;
+    const rateVal = (rate / 5) * 100;
+    return rateVal;
   };
 
   return (
@@ -77,24 +76,26 @@ interface Product {
           </div>
           <h4>See More</h4>
         </div>
-        <div className="grid grid-cols-2 mb-4 md:flex md:flex-wrap md:justify-between gap-1 mt-6">
+        <div className="grid grid-cols-2 mb-4 md:grid md:grid-cols-5 md:justify-between gap-4 mt-6">
           {isLoading ? (
             <Loading />
           ) : (
-            allProductsData?.products.slice(0, 10).map((product :  Product) => (
+            allProductsData?.products.slice(0, 10).map((product: Product) => (
               <div
-                className="border shadow md:w-1/6 mb-6"
+                className="border rounded-md shadow overflow-hidden mb-6"
                 key={product?.id}
                 onClick={() => {
                   navigate("/product/" + product?.id);
                 }}
               >
                 <div className="bg-[#EAEFF5]">
-                  <img
-                    src={product?.thumbnail}
-                    alt=""
-                    className="object-cover w-[90%] h-28 mx-auto transform hover:scale-105 transition duration-500 ease-in-out"
-                  />
+                  <div className="flex-shrink-0">
+                    <img
+                      className="h-48 w-full object-cover transform hover:scale-105 transition duration-1000 ease-in-out"
+                      src={product?.thumbnail}
+                      alt={product?.description}
+                    />
+                  </div>
                 </div>
                 <div className="text-sm px-2">
                   <p className="mt-1">{product?.category}</p>
@@ -128,37 +129,40 @@ interface Product {
           )}
           {isError ? <ErrorPage message={`Some thing went wrong`} /> : null}
         </div>
-       <div>
-      <button
-        className="px-4 py-2 text-sm font-medium text-white bg-[#349C83] rounded-md hover:bg-[#2A977D]"
-        onClick={openModal}
-      >
-        Click to view more product by category
-      </button>
+        <div>
+          <button
+            className="px-4 py-2 text-sm font-medium text-white bg-[#349C83] rounded-md hover:bg-[#2A977D]"
+            onClick={openModal}
+          >
+            Click to view more product by category
+          </button>
 
-      <Modal isOpen={isOpen} onClose={closeModal}>
-      <div className="md:grid md:grid-cols-5 md:mt-16">
-          {allCategory?.map((categ:any, index: number) => (
-            <Buttons
-              key={index}
-              click={() => {setCategory(categ); 
-                closeModal()
-              }}
-              name={categ}
-            />
-          ))}
+          <Modal isOpen={isOpen} onClose={closeModal}>
+            <div className="md:grid md:grid-cols-5 md:mt-16">
+              {allCategory?.map((categ: any, index: number) => (
+                <Buttons
+                  key={index}
+                  click={() => {
+                    setCategory(categ);
+                    closeModal();
+                  }}
+                  name={categ}
+                />
+              ))}
+            </div>
+          </Modal>
         </div>
-      </Modal>
-    </div>
         {/* <OtherProduct product={productByCategory?.products}/> */}
-        {
-          isLoading ? (<Loading />) :
-          <OtherProduct product={productByCategory ? productByCategory.products : []} />
-        }
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <OtherProduct
+            product={productByCategory ? productByCategory.products : []}
+          />
+        )}
       </div>
     </div>
   );
 };
 
-
-export default SpecialProduct
+export default SpecialProduct;

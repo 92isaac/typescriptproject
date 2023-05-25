@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { FiSearch, FiBell, FiMessageSquare } from "react-icons/fi";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { RootState } from "../../features/store";
+import { useDispatch, useSelector } from "react-redux";
+import { searchResult } from "../../features/searchSlice";
 
 type Props = {
   isSidebarOpen: boolean;
@@ -10,6 +13,17 @@ type Props = {
 const NavbarSmall: React.FC<Props> = ({ isSidebarOpen }) => {
   const [notificationCount] = useState<number>(5);
   const [messageCount] = useState<number>(2);
+  const dispatch = useDispatch();
+  const searchValue = useSelector((state: RootState) => state.search.searchValue);
+  const navigate = useNavigate();
+
+
+  const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    dispatch(searchResult);
+    navigate("/searchresult");
+    dispatch(searchResult(''))
+  };
 
   const { pathname } = useLocation();
   if (pathname === "/") return null;
@@ -22,17 +36,20 @@ const NavbarSmall: React.FC<Props> = ({ isSidebarOpen }) => {
           : "fixed flex justify-between items-center px-4 py-2 bg-white shadow-lg md:hidden w-full"
       }`}
     >
-      <div className="flex items-center justify-center w-1/3">
+      <div className="flex items-center justify-center w-2/3 ">
         <span className="text-gray-400">
           <FiSearch size={20} />
         </span>
         <input
+           value={searchValue}
+           onChange={(event:React.ChangeEvent<HTMLInputElement>)=>{dispatch(searchResult(event.target.value))}}
           type="text"
           placeholder="Search"
           className="w-full ml-2 outline-none border-none text-gray-700 text-sm"
         />
+        <button onClick={handleSubmit}>Search</button>
       </div>
-      <div className="flex items-center justify-center w-1/3">
+      <div className="flex items-center justify-center w-1/3 ">
         <div className="relative inline-block">
           <span className="text-gray-400">
             <FiBell size={20} />

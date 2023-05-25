@@ -9,6 +9,10 @@ export interface AuthState {
   lastName: string | null;
   gender: string | null;
   image: string | null;
+  phone: string | null;
+  birthDate: string | null;
+  address: string | null;
+  city:string | null;
 }
 
 const initialState: AuthState = {
@@ -19,6 +23,10 @@ const initialState: AuthState = {
   lastName: null,
   gender: null,
   image: null,
+  phone: null,
+  birthDate: null,
+  address: null,
+  city: null,
 };
 
 export const authSlice = createSlice({
@@ -35,6 +43,10 @@ export const authSlice = createSlice({
         lastName: string;
         gender: string;
         image: string;
+        phone: string;
+  birthDate: string;
+  address: string;
+  city:string;
       }>
     ) => {
       localStorage.setItem(
@@ -47,6 +59,10 @@ export const authSlice = createSlice({
           lastName: action.payload.lastName,
           gender: action.payload.gender,
           image: action.payload.image,
+          phone: action.payload.phone,
+          birthDate: action.payload.birthDate,
+          address: action.payload.address,
+          city: action.payload.city,
         })
       );
       state.name = action.payload.name;
@@ -56,6 +72,10 @@ export const authSlice = createSlice({
       state.lastName = action.payload.lastName;
       state.gender = action.payload.gender;
       state.image = action.payload.image;
+      state.phone = action.payload.phone;
+      state.birthDate = action.payload.birthDate;
+      state.address = action.payload.address;
+      state.city = action.payload.city;
     },
     logOut: (state) => {
       localStorage.clear();
@@ -66,6 +86,10 @@ export const authSlice = createSlice({
       state.lastName = null;
       state.gender = null;
       state.image = null;
+      state.phone = null;
+      state.birthDate = null;
+      state.address = null;
+      state.city = null;
     },
   },
 });

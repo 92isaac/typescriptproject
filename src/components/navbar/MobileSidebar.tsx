@@ -19,6 +19,7 @@ const MobileSidebar: React.FC = () => {
   };
 
   const handleLogout=()=>{
+    localStorage.removeItem('user')
     dispatch(logOut)
     toast.success(`Good bye! ${name}.`)
     toggleSidebar()
@@ -60,7 +61,7 @@ const MobileSidebar: React.FC = () => {
           ))}
           <ul>
             {token ? 
-            <li><Link className="mb-2"  onClick={handleLogout} to="/logout">Log Out</Link></li>
+            <li><Link className="mb-2"  onClick={handleLogout} to="/">Log Out</Link></li>
             :
             <li><Link className="mb-2"  onClick={toggleSidebar} to="/login">Log in</Link></li>
           }

@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../constant/hooks";
 import { setUser } from "../features/authSlice";
+import Modal from "./commonfiles/Modal";
+import { useGetUsersQuery } from "../features/productApiSlice";
 
 const LoginForm = () => {
   const [
@@ -14,10 +16,26 @@ const LoginForm = () => {
       isError: isLoginError,
     },
   ] = useLoginUserMutation();
+  const 
+    {
+      data: users,
+      // isSuccess: isUserSuccess,
+      // isError: isUserError,
+    }
+  = useGetUsersQuery(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   const handleLogin = async (e:React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -31,7 +49,7 @@ const LoginForm = () => {
   useEffect(()=>{
     if(isLoginSuccess){
       toast.success('Login Success');
-      dispatch(setUser({token:loginData.token, name:loginData.firstName, email:loginData.email, firstName:loginData.firstName, lastName:loginData.last, image:loginData.image, gender:loginData.gender}))
+      dispatch(setUser({token:loginData.token, name:loginData.firstName, email:loginData.email, firstName:loginData.firstName, lastName:loginData.last, image:loginData.image, gender:loginData.gender, phone:loginData.phone, birthDate:loginData.birthDate, address:loginData.address, city:loginData.city}))
       navigate('/')
     }
     if(isLoginError){
@@ -105,6 +123,29 @@ const LoginForm = () => {
           </a>
         </p>
       </form>
+      <div className="flex justify-center align-middle">
+      <button
+        className="px-4 py-2 text-sm font-medium text-white bg-[#349C83] rounded-md hover:bg-[#2A977D]"
+        onClick={openModal}
+      >
+        Click for a demo
+      </button>
+
+      <Modal isOpen={isOpen} onClose={closeModal}>
+        <p className="md:mt-8 font-bold">Use any of the following details to access the project</p>
+      <div className="md:grid md:grid-cols-2 md:mt-2">
+          {users?.users?.slice(0,10).map((user:any) => (
+           <div className="" key={user?.id}>
+            <div className="border px-5 py-3">
+            <h3>Username: {user?.username}</h3>
+            <h3>Password: {user?.password}</h3>
+            </div>
+            <hr />
+           </div>
+          ))}
+        </div>
+      </Modal>
+    </div>
     </div>
   );
 };

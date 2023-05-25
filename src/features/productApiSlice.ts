@@ -24,9 +24,12 @@ export const productApiSlice = createApi({
         getSearchProduct : builder.query({
             query: (searchQuery)=> `/products/search?q=${searchQuery}`,        
         }),
+        getUsers : builder.query({
+            query: ()=> `/users`,        
+        }),
     })
     
 })
 
-export const { useGetAllProductsQuery, useGetProductCategoryQuery, useGetSearchProductQuery, useGetByCategoriesQuery, useGetSingleProductsQuery, useGetPaginateProductQuery } = productApiSlice
+export const { useGetAllProductsQuery, useGetProductCategoryQuery, useGetSearchProductQuery, useGetByCategoriesQuery, useGetSingleProductsQuery, useGetPaginateProductQuery, useGetUsersQuery } = productApiSlice
 
