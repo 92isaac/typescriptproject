@@ -6,7 +6,7 @@ export interface AuthState {
   name: string | null;
   token: string | null;
   email: string | null;
-  firstName: string | null;
+  username: string | null;
   lastName: string | null;
   gender: string | null;
   image: string | null;
@@ -21,7 +21,7 @@ const initialState: AuthState = {
   name: null,
   token: null,
   email: null,
-  firstName: null,
+  username: null,
   lastName: null,
   gender: null,
   image: null,
@@ -42,14 +42,11 @@ export const authSlice = createSlice({
         name: string;
         token: string;
         email: string;
-        firstName: string;
+        username: string;
         lastName: string;
         gender: string;
         image: string;
-        phone: string;
-        birthDate: string;
-        address: string;
-        city: string;
+       
       }>
     ) => {
       localStorage.setItem(
@@ -59,28 +56,22 @@ export const authSlice = createSlice({
           name: action.payload.name,
           token: action.payload.token,
           email: action.payload.email,
-          firstName: action.payload.firstName,
+          username: action.payload.username,
           lastName: action.payload.lastName,
           gender: action.payload.gender,
           image: action.payload.image,
-          phone: action.payload.phone,
-          birthDate: action.payload.birthDate,
-          address: action.payload.address,
-          city: action.payload.city,
+        
         })
       );
       state.id = action.payload.id;
       state.name = action.payload.name;
       state.token = action.payload.token;
       state.email = action.payload.email;
-      state.firstName = action.payload.firstName;
+      state.username = action.payload.username;
       state.lastName = action.payload.lastName;
       state.gender = action.payload.gender;
       state.image = action.payload.image;
-      state.phone = action.payload.phone;
-      state.birthDate = action.payload.birthDate;
-      state.address = action.payload.address;
-      state.city = action.payload.city;
+     
     },
     logOut: (state) => {
       localStorage.clear();
@@ -88,14 +79,12 @@ export const authSlice = createSlice({
       state.name = null;
       state.token = null;
       state.email = null;
-      state.firstName = null;
+      state.username = null;
       state.lastName = null;
       state.gender = null;
       state.image = null;
-      state.phone = null;
-      state.birthDate = null;
-      state.address = null;
-      state.city = null;
+     
+    
     },
   },
 });

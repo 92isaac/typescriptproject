@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectAuth } from "../features/authSlice";
 
 const ProfilePage: React.FC = () => {
-  const {token, name, image, email, firstName, id, lastName, address, birthDate, phone} = useSelector(selectAuth)
+  const {token, name, image, email, username, lastName, } = useSelector(selectAuth)
 
 return (
     <div className="bg-gray-100 min-h-screen py-10">
@@ -17,6 +17,7 @@ return (
                 className="w-40 h-40 object-cover rounded-full mx-auto mb-4"
               />
               <h2 className="text-2xl font-bold text-center mb-2">{name} {lastName}</h2>
+              <p className="text-gray-500 text-center">{username}</p>
               <p className="text-gray-500 text-center">{email}</p>
               <div className="flex justify-center mt-6">
                 <button className="px-4 py-2 bg-indigo-500 text-white rounded-md">
@@ -26,14 +27,14 @@ return (
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md mb-3">
               <h3 className="text-xl font-bold mb-4">Date of Birth</h3>
-              <p className="text-gray-500">{birthDate}</p>
+              <p className="text-gray-500">2000-12-25</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md mb-3">
               <h3 className="text-xl font-bold mb-4">Shipping Address</h3>
-              <p className="text-gray-500">{address}</p>
+              <p className="text-gray-500">123 Street, City, State, ZIP Code</p>
               <hr />
               <h3 className="text-xl font-bold mb-4">Phone</h3>
-              <p className="text-gray-500">{phone}</p>
+              <p className="text-gray-500">+63 791 675 8914</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md mb-3">
               <h3 className="text-xl font-bold mb-4">Shipping Address</h3>

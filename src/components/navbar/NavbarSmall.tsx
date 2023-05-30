@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { FiSearch, FiBell, FiMessageSquare } from "react-icons/fi";
+import { FiSearch, FiMessageSquare, FiShoppingCart } from "react-icons/fi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { RootState } from "../../features/store";
 import { useDispatch, useSelector } from "react-redux";
 import { searchResult } from "../../features/searchSlice";
+import { selectAuth } from "../../features/authSlice";
+import { useGetUserCartQuery } from "../../features/cartApiSlice";
 
 type Props = {
   isSidebarOpen: boolean;
@@ -11,8 +13,10 @@ type Props = {
 };
 
 const NavbarSmall: React.FC<Props> = ({ isSidebarOpen }) => {
-  const [notificationCount] = useState<number>(5);
-  const [messageCount] = useState<number>(2);
+  const id = useSelector(selectAuth)
+  const {data: cartResult } = useGetUserCartQuery(id?.id)
+  const [notificationCount] = useState<number>(cartResult?.carts[0]?.products.length);
+  const [messageCount] = useState<number>(0);
   const dispatch = useDispatch();
   const searchValue = useSelector((state: RootState) => state.search.searchValue);
   const navigate = useNavigate();
@@ -52,7 +56,7 @@ const NavbarSmall: React.FC<Props> = ({ isSidebarOpen }) => {
       <div className="flex items-center justify-center w-1/3 ">
         <div className="relative inline-block">
           <span className="text-gray-400">
-            <FiBell size={20} />
+            <FiShoppingCart size={20} />
           </span>
           {notificationCount > 0 && (
             <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1 rounded-full">

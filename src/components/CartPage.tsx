@@ -54,6 +54,7 @@ const CartPage: React.FC<CartProps> = ({ items, onItemRemove }) => {
                       type="number"
                       min="1"
                       value={item?.quantity}
+                      readOnly
                       // onChange={(e) =>
                         // onQuantityChange(item?.id, parseInt(e.target.value))
                       // }
