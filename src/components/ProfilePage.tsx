@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectAuth } from "../features/authSlice";
 
 const ProfilePage: React.FC = () => {
-  const {token, name, image, email, lastName, address, birthDate, phone} = useSelector(selectAuth)
+  const {token, name, image, email, firstName, id, lastName, address, birthDate, phone} = useSelector(selectAuth)
 
 return (
     <div className="bg-gray-100 min-h-screen py-10">

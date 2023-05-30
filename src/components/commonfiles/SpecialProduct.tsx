@@ -17,6 +17,7 @@ import Modal from "./Modal";
 interface Product {
   id: string;
   thumbnail: string;
+  title: string;
   category: string;
   description: string;
   price: number;
@@ -61,14 +62,14 @@ const SpecialProduct = (): JSX.Element => {
             <h3>Special Products for You</h3>
             <div className="flex gap-6">
               <h4>Ends in</h4>
-              <div className="flex gap-2">
-                <div className="bg-red-300 rounded">
+              <div className="flex  gap-2">
+                <div className="bg-red-300 w-7 h-7 rounded">
                   <p className="p-1">02</p>
                 </div>
-                <div className="bg-red-300 rounded">
+                <div className="bg-red-300 w-7 h-7 rounded">
                   <p className="p-1">54</p>
                 </div>
-                <div className="bg-red-300 rounded">
+                <div className="bg-red-300 w-7 h-7 rounded">
                   <p className="p-1">04</p>
                 </div>
               </div>
@@ -98,7 +99,7 @@ const SpecialProduct = (): JSX.Element => {
                   </div>
                 </div>
                 <div className="text-sm px-2">
-                  <p className="mt-1">{product?.category}</p>
+                  <p className="mt-1">{product?.title}</p>
                   <h4 className="my-3 font-bold text-xs">
                     {product?.description.slice(0, 60)}...
                   </h4>
@@ -112,8 +113,8 @@ const SpecialProduct = (): JSX.Element => {
                     </p>
                   </div>
                 </div>
-                <div className="w-3/4 px-2 pb-3">
-                  {/* <div className="w-2/3 h-2 bg-red-700 mx-auto "></div> */}
+                {/* <div className="w-3/4 px-2 pb-3">
+                  <div className="w-2/3 h-2 bg-red-700 mx-auto "></div>
                   <div className="relative h-2 bg-gray-200 rounded-full mx-auto my-0">
                     <div
                       className="absolute top-0 left-0 h-full bg-red-400 rounded-full"
@@ -122,8 +123,8 @@ const SpecialProduct = (): JSX.Element => {
                       }}
                     ></div>
                   </div>
-                  {/* <p className="text-xs">24/30</p> */}
-                </div>
+                  <p className="text-xs">24/30</p>
+                </div> */}
               </div>
             ))
           )}

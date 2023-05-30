@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
 export interface AuthState {
+  id: number | null;
   name: string | null;
   token: string | null;
   email: string | null;
@@ -12,10 +13,11 @@ export interface AuthState {
   phone: string | null;
   birthDate: string | null;
   address: string | null;
-  city:string | null;
+  city: string | null;
 }
 
 const initialState: AuthState = {
+  id: null,
   name: null,
   token: null,
   email: null,
@@ -36,6 +38,7 @@ export const authSlice = createSlice({
     setUser: (
       state,
       action: PayloadAction<{
+        id: number;
         name: string;
         token: string;
         email: string;
@@ -44,14 +47,15 @@ export const authSlice = createSlice({
         gender: string;
         image: string;
         phone: string;
-  birthDate: string;
-  address: string;
-  city:string;
+        birthDate: string;
+        address: string;
+        city: string;
       }>
     ) => {
       localStorage.setItem(
         "user",
         JSON.stringify({
+          id: action.payload.id,
           name: action.payload.name,
           token: action.payload.token,
           email: action.payload.email,
@@ -65,6 +69,7 @@ export const authSlice = createSlice({
           city: action.payload.city,
         })
       );
+      state.id = action.payload.id;
       state.name = action.payload.name;
       state.token = action.payload.token;
       state.email = action.payload.email;
@@ -79,6 +84,7 @@ export const authSlice = createSlice({
     },
     logOut: (state) => {
       localStorage.clear();
+      state.id = null;
       state.name = null;
       state.token = null;
       state.email = null;

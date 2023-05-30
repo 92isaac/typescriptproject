@@ -49,7 +49,7 @@ const LoginForm = () => {
   useEffect(()=>{
     if(isLoginSuccess){
       toast.success('Login Success');
-      dispatch(setUser({token:loginData.token, name:loginData.firstName, email:loginData.email, firstName:loginData.firstName, lastName:loginData.last, image:loginData.image, gender:loginData.gender, phone:loginData.phone, birthDate:loginData.birthDate, address:loginData.address, city:loginData.city}))
+      dispatch(setUser({token:loginData.token, name:loginData.firstName, email:loginData.email, firstName:loginData.firstName, lastName:loginData.last, image:loginData.image, gender:loginData.gender, phone:loginData.phone, birthDate:loginData.birthDate, address:loginData.address, city:loginData.city, id:loginData.id}))
       navigate('/')
     }
     if(isLoginError){

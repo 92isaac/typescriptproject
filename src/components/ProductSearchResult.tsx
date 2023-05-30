@@ -25,10 +25,12 @@ const ProductSearchResult: FC<Props> = ({ products }) =>
   return (
     <div className={`grid grid-cols-1 px-4 md:grid-cols-2 lg:grid-cols-4 gap-8 `}>
 
-      {Object.values(products)?.map((product) => (
+      {Object.values(products)?.map((product, index) => (
         <div
           key={product?.id}
-          className="flex flex-col rounded-lg shadow-lg overflow-hidden mt-10"
+          className={`flex flex-col rounded-lg shadow-lg overflow-hidden mt-10 ${
+            index % 2 !== 0 ? 'grid grid-cols-2 col-span-3' : ''
+          }`}
         >
           <div className="flex-shrink-0">
             <img

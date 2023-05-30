@@ -1,11 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { selectAuth } from '../features/authSlice';
+import { useGetUserCartQuery } from '../features/cartApiSlice';
 
 interface CartItem {
   id: number;
-  name: string;
+  title: string;
   price: number;
   quantity: number;
+  total:number;
+  totalQuantity:number;
+  totalProducts: number;
+  discountedTotal: number;
 }
 
 interface CartProps {
@@ -18,18 +25,21 @@ interface CartProps {
 
 const CartPage: React.FC<CartProps> = ({ items, onItemRemove }) => {
   const navigate = useNavigate()
+  const id = useSelector(selectAuth)
+  console.log(id?.id)
+  const {data: cartResult } = useGetUserCartQuery(id?.id)
   return (
     <div className="flex flex-col lg:flex-row lg:max-w-4xl mx-auto my-4 p-4 bg-white rounded-md shadow-md">
       <div className="flex-1">
         <h2 className="text-lg font-medium mb-4">Your Cart ({items?.length})</h2>
         {items?.length > 0 ? (
           <ul>
-            {items?.map((item) => (
+            {Object.values(items).map((item) => (
               <li key={item?.id} className="flex mb-4">
                 <div className="flex-shrink-0 w-16 h-16 bg-gray-200 rounded-md mr-4"></div>
                 <div className="flex-1">
                   <div className="flex justify-between items-center mb-2">
-                    <h3 className="text-base font-medium">{item?.name}</h3>
+                    <h3 className="text-base font-medium">{item?.title}</h3>
                     <button
                       className="text-red-500 hover:text-red-700"
                       onClick={() => onItemRemove(item?.id)}
@@ -71,12 +81,24 @@ const CartPage: React.FC<CartProps> = ({ items, onItemRemove }) => {
             <div>$0.00</div>
           </div>
           <div className="flex justify-between mb-4">
+            <div>Total Products:</div>
+            <div>{cartResult?.carts[0]?.totalProducts}</div>
+          </div>
+          <div className="flex justify-between mb-4">
+            <div>Total Quantity:</div>
+            <div>{cartResult?.carts[0]?.totalQuantity}</div>
+          </div>
+          <div className="flex justify-between mb-4">
+            <div>Total Discount:</div>
+            <div>{cartResult?.carts[0]?.discountedTotal}</div>
+          </div>
+          <div className="flex justify-between mb-4">
             <div>Shipping:</div>
             <div>$0.00</div>
           </div>
-          <div className="flex justify-between font-medium">
-            <div>Total:</div>
-            {/* <div>${items?.reduce((acc, item) => acc + item?.price * item?.quantity, 0).toFixed(2)}</div> */}
+          <div className="flex justify-between font-medium text-xl">
+            <div className=''>Total:</div>
+            <div className=''>${cartResult?.carts[0]?.total}</div>
           </div>
         </div>
         <button className="w-full mt-4 bg-[#349C83] text-white hover:bg-[#2A977D] py-2 rounded-md shadow-md">

@@ -16,8 +16,13 @@ export const cartApi = createApi({
                     body,
                 }
             }
-        })
+        }),
+        getUserCart : builder.query({
+            query: (userId)=> `/users/${userId}/carts`,        
+        }),
     })
 })
 
-export const { useAddCartMutation } = cartApi
+export const { useAddCartMutation, useGetUserCartQuery } = cartApi
+
+

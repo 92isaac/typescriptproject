@@ -39,7 +39,7 @@ const NavbarLarge = () => {
     e.preventDefault();
     dispatch(searchResult);
     navigate("/searchresult");
-    dispatch(searchResult(''))
+    // dispatch(searchResult(''))
   };
 
   return (

@@ -5,6 +5,7 @@ import { setupListeners } from '@reduxjs/toolkit/dist/query'
 import authReducer from './authSlice'
 import cartReducer from './cartSlice'
 import searchRducer from './searchSlice'
+import { cartApi } from './cartApiSlice'
 
 
 export const store = configureStore({
@@ -13,9 +14,10 @@ export const store = configureStore({
     cart: cartReducer,
     search: searchRducer,
     [authApi.reducerPath]: authApi.reducer,
-    [productApiSlice.reducerPath]: productApiSlice.reducer
+    [productApiSlice.reducerPath]: productApiSlice.reducer,
+    [cartApi.reducerPath]: cartApi.reducer
   },
-  middleware: (getDefaultMiddleware) =>getDefaultMiddleware().concat(authApi.middleware).concat(productApiSlice.middleware)
+  middleware: (getDefaultMiddleware) =>getDefaultMiddleware().concat(authApi.middleware).concat(productApiSlice.middleware).concat(cartApi.middleware)
 })
 
 export type AppDispatch = typeof store.dispatch;
