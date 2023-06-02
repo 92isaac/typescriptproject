@@ -14,16 +14,19 @@ import { useGetUserCartQuery } from "../../features/cartApiSlice";
 
 const NavbarLarge = () => {
   const { token, name, image, id } = useSelector(selectAuth);
+  console.log(id)
   const searchValue = useSelector(
     (state: RootState) => state.search.searchValue
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { data: cartResult } = useGetUserCartQuery(id?.id);
+  const { data: cartResult } = useGetUserCartQuery(id);
   const [notificationCount] = useState<number>(
-    cartResult?.carts[0]?.products.length
+    cartResult?.carts[0]?.totalProducts
   );
+
+  console.log(cartResult)
 
   const handleLogout = () => {
     localStorage.removeItem("user");
