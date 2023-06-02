@@ -16,7 +16,7 @@ const ProductImageGallery: React.FC<Props> = ({ images }) => {
   return (
     <div className="pt-10 flex flex-row-reverse w-2/5 md:block">
       <div className="md:w-full">
-        <img src={selectedImage} alt="" className="w-full h-90 object-contain aspect-auto" />
+        <img src={selectedImage} alt="" className="w-full h-96 object-contain aspect-auto" />
       </div>
       <div className="w-full md:w-full block md:flex md:justify-between mb-4 lg:mb-0">
         {images?.map((image: string, index: number) => (

@@ -6,14 +6,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { searchResult } from "../../features/searchSlice";
 import Logo from "../commonfiles/Logo";
-import { selectAuth } from "../../features/authSlice";
+import { logOut, selectAuth } from "../../features/authSlice";
 // import { useAppSelector } from "../../constant/hooks";
 import { RootState } from "../../features/store";
+import { navlinks } from "../commonfiles/data";
+import { toast } from "react-toastify";
 
 const NavbarLarge = () => {
   // const [isOpen, setIsOpen] = useState(false);
-  const {token, name, image} = useSelector(selectAuth)
-  const searchValue = useSelector((state: RootState) => state.search.searchValue);
+  const { token, name, image } = useSelector(selectAuth);
+  const searchValue = useSelector(
+    (state: RootState) => state.search.searchValue
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,6 +29,15 @@ const NavbarLarge = () => {
     { value: "0.2781", change: "-1.23%", currency: "ltc" },
   ];
 
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    dispatch(logOut);
+    toast.success(`Good bye! ${name}.`);
+    handleModalToggle();
+    navigate("/login");
+    window.location.reload();
+  };
+
   const handleOptionClick = () => {
     setIsModalOpen(false);
   };
@@ -32,8 +45,6 @@ const NavbarLarge = () => {
   const handleModalToggle = () => {
     setIsModalOpen(!isModalOpen);
   };
-
-  console.log(searchResult);
 
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -123,7 +134,9 @@ const NavbarLarge = () => {
             <div className="relative">
               <input
                 value={searchValue}
-                onChange={(event:React.ChangeEvent<HTMLInputElement>)=>{dispatch(searchResult(event.target.value))}}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  dispatch(searchResult(event.target.value));
+                }}
                 type="text"
                 placeholder="Search for products"
                 className="rounded py-1.5 pl-6 pr-12 w-90 border-2 bg-[#161828] border-[#363741] border-transparent  focus:outline-none transition-colors duration-300"
@@ -156,26 +169,45 @@ const NavbarLarge = () => {
             {/* Avatar for account dropdown */}
             <div className="text-xl relative">
               <div className="flex justify-center">
-                <h2>Welcome {token? `${name}` : 'Anonymous'}</h2>
-              <img src={image?.toString()} className="rounded-full w-10 h-10 bg-white" alt={image?.toString()} onClick={handleModalToggle} />
+                <h2>Welcome {token ? `${name}` : "Anonymous"}</h2>
+                <img
+                  src={image?.toString()}
+                  className="rounded-full w-10 h-10 bg-white"
+                  alt={image?.toString()}
+                  onClick={handleModalToggle}
+                />
               </div>
               {isModalOpen && (
-                <div className="absolute top-full left-0 z-50 -ml-52 mt-8 w-60 max-h-200 overflow-y-auto border border-gray-300 rounded bg-gray-900">
-                  {options?.map((option, index) => (
-                    <div
-                      key={index}
-                      className="p-2 cursor-pointer hover:bg-gray-700"
-                      onClick={() => handleOptionClick()}
-                    >
-                      <div className="flex gap-4">
-                        <div className="text-white uppercase">
-                          {option.currency.toUpperCase()}
-                        </div>
-                        <div className="text-white">${option.value}</div>
-                        <div className="text-white">{option.change}</div>
-                      </div>
-                    </div>
+                <div className="flex-grow px-4 py-6 absolute top-full left-0 z-50 -ml-4 mt-4 w-60 max-h-200 overflow-y-auto border border-gray-300 rounded bg-gray-900">
+                  {/* Sidebar content goes here */}
+                  {navlinks.map((option) => (
+                    <ul key={option.id}>
+                      <li className="mb-2 text-sm" onClick={handleModalToggle}>
+                        <Link to={`${option.path}`}>
+                          {option.icon} {option.title}
+                        </Link>
+                      </li>
+                    </ul>
                   ))}
+                  <ul>
+                    {token ? (
+                      <li>
+                        <Link className="mb-2 text-sm" onClick={handleLogout} to="/">
+                          Log Out
+                        </Link>
+                      </li>
+                    ) : (
+                      <li>
+                        <Link
+                          className="mb-2 text-sm"
+                          onClick={handleModalToggle}
+                          to="/login"
+                        >
+                          Log in
+                        </Link>
+                      </li>
+                    )}
+                  </ul>
                 </div>
               )}
             </div>

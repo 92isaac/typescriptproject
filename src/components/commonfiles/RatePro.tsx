@@ -28,7 +28,7 @@ export const RatePro: React.FC<Rating> = ({ rating }) => {
             <FaStar key={index} className="h-5 w-5 text-gray-400" />
           ))}
         </div>
-        <div className="ml-2 text-gray-700 text-sm">{rating.toFixed(1)}</div>
+        <div className="ml-2 text-gray-700 text-md font-bold">({rating?.toFixed(1)})</div>
       </div>
     );
   };

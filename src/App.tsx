@@ -15,6 +15,7 @@ import NotFoundPage from "./route/NotFound.tsx";
 import ScrollToTop from "./constant/ScrollToTop.tsx";
 import Profile from "./route/Profile.tsx";
 import ProtectedRoute from "./route/ProtectedRoute.tsx";
+import { ProductInDetails } from "./route/ProductInDetails.tsx";
 
 
 function App() {
@@ -43,7 +44,7 @@ console.log(user)
     <Routes>
       <Route path="/" element={<SharedLayout />}>
       <Route index element={<Home/>} />
-      <Route path="/product/:id" element={<Marketplace/>} />
+      <Route path="/product/:id" element={<ProductInDetails/>} />
       <Route path="/searchresult" element={<ProductSearch/>} />
       <Route path="/cart" element={<ProtectedRoute><Cart/></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>} />

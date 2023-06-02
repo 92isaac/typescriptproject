@@ -16,3 +16,17 @@
   .pulse-button:hover {
     animation: pulse 1s infinite;
   }
+
+
+  .clip-top{
+    border: ridge;
+    border-color: #fff;
+    border-radius: 100px 100px 0 0;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+  }
+  .clip-bottom{
+    border: ridge;
+    border-color: #fff;
+    border-radius: 0 0 100px 100px;
+    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%); 
+  }

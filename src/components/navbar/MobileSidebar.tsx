@@ -24,6 +24,7 @@ const MobileSidebar: React.FC = () => {
     toast.success(`Good bye! ${name}.`)
     toggleSidebar()
     navigate('/login')
+    window.location.reload()
   }
 
   return (
