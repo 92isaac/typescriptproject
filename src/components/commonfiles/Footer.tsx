@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className='bg-black p-12 text-white'>
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-    <div className="block md:grid md:grid-cols-4">
+    <div className="grid grid-cols-2 md:grid md:grid-cols-4">
         <ul className=''>
             <li className='uppercase text-sm md:text-2xl font-bold leading-8'>About Us</li>
             <li className='text-xs leading-5 md:leading-8 md:text-sm '>Blog</li>
@@ -28,8 +28,8 @@ const Footer = () => {
         </ul>
         <div className='mt-4 md:mt-0'>
             <Link to="/" className='mb-5 text-white'><FaShoppingBag className='inline text-sm md:text-2xl'/> TOKOSMILE</Link>
-            <p className='mt-4'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi, reprehenderit!</p>
-            <div className='flex gap-3'>
+            <p className='text-sm mt-4'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi, reprehenderit!</p>
+            <div className='flex gap-3 mt-2'>
                 <FaFacebook />
                 <FaInstagram />
                 <FaLinkedin />
