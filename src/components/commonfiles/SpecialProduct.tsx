@@ -36,7 +36,7 @@ const SpecialProduct = (): JSX.Element => {
     setIsOpen(false);
   };
 
-  const [categoryp, setCategory] = useState<string>("smartphones");
+  const [categoryp, setCategory] = useState<string>("mens-shirts");
   const navigate = useNavigate();
   const {
     data: allProductsData,
@@ -113,18 +113,6 @@ const SpecialProduct = (): JSX.Element => {
                     </p>
                   </div>
                 </div>
-                {/* <div className="w-3/4 px-2 pb-3">
-                  <div className="w-2/3 h-2 bg-red-700 mx-auto "></div>
-                  <div className="relative h-2 bg-gray-200 rounded-full mx-auto my-0">
-                    <div
-                      className="absolute top-0 left-0 h-full bg-red-400 rounded-full"
-                      style={{
-                        width: `${calPercentageRting(product.rating)}%`,
-                      }}
-                    ></div>
-                  </div>
-                  <p className="text-xs">24/30</p>
-                </div> */}
               </div>
             ))
           )}
@@ -153,7 +141,6 @@ const SpecialProduct = (): JSX.Element => {
             </div>
           </Modal>
         </div>
-        {/* <OtherProduct product={productByCategory?.products}/> */}
         {isLoading ? (
           <Loading />
         ) : (

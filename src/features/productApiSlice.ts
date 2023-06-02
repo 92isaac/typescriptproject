@@ -7,7 +7,7 @@ export const productApiSlice = createApi({
     baseQuery : fetchBaseQuery({baseUrl: API_URL}), 
     endpoints: (builder)=>({
         getAllProducts : builder.query({
-            query: ()=> "/products",        
+            query: ()=> "/products/?limit=10&skip=10",        
         }),
         getPaginateProduct : builder.query({
             query: (pagin)=> `/products?limit=${pagin}`,        

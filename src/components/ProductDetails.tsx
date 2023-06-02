@@ -58,7 +58,7 @@ const ProductDetails: React.FC<Product> = ({ products }) => {
               <div
                 key={index}
                 className={` lg:w-full mb-4 object-cover lg:mb-0 mx-3 mt-3 rounded-md shadow-md ${
-                  selectedImage === image ? "border-2 border-blue-500" : ""
+                  selectedImage === image ? "border-2 border-[#2A977D]" : ""
                 }`}
                 onClick={() => selectImage(image)}
               >
@@ -69,6 +69,13 @@ const ProductDetails: React.FC<Product> = ({ products }) => {
                 />
               </div>
             ))}
+          </div>
+          <div className="hidden mt-10  md:flex gap-4 items-center">
+          <button className="py-2 px-6 bg-[#2A977D] text-white rounded-sm" onClick={()=>navigate(-1)}>Back</button>
+            <button className=" py-2 border-[#2A977D] text-[#2A977D] hover:border-[#2A977D]" onClick={()=>{
+             navigate('/')
+            }}> 
+            Home</button>
           </div>
         </div>
         <div className="md:w-1/2 px-10">
@@ -81,8 +88,8 @@ const ProductDetails: React.FC<Product> = ({ products }) => {
           <hr />
 
           <div className="second py-6">
-            <h2 className="font-bold text-2xl">${products?.price}</h2>
-            <p> {products?.discountPercentage}%  OFF <span className=" text-xs text-gray-400"> If order above <span className="text-sm font-bold text-[#2A977D]">$120</span></span></p>
+            <h2 className="font-bold text-2xl">Price: ${products?.price}</h2>
+            <p> {products?.discountPercentage}%  OFF <span className=" text-xs text-gray-400"> on order above <span className="text-sm font-bold text-[#2A977D]">$120</span></span></p>
           </div>
           <hr />
           <ColorPicker/>

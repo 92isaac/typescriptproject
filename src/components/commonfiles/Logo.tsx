@@ -6,7 +6,7 @@ const Logo = () => {
               <div className="flex items-center">
                 <div className="text-2xl mr-2">
                   <img
-                    className="h-8 w-auto sm:h-10"
+                    className="h-8 w-auto sm:h-10 bg-[]"
                     src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
                     alt=""
                   />

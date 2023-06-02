@@ -14,6 +14,7 @@ const LoginForm = () => {
       data: loginData,
       isSuccess: isLoginSuccess,
       isError: isLoginError,
+      error: isError
     },
   ] = useLoginUserMutation();
   const 
@@ -52,12 +53,14 @@ const LoginForm = () => {
       dispatch(setUser({token:loginData.token, name:loginData.firstName, email:loginData.email, username:loginData.username, lastName:loginData.last, image:loginData.image, gender:loginData.gender, id:loginData.id}))
       navigate('/')
     }
-    if(isLoginError){
-      toast.error('Something went wrong');
-      navigate('/signin')
+
+    
+if(isLoginError || isError){
+      toast.error('Password or Username is wrong');
+      navigate('/login')
     }
     
-  }, [isLoginSuccess]);
+  }, [isLoginSuccess, isError]);
 
   return (
     <div className="bg-white mx-auto max-w-md shadow-md rounded px-8 pt-6 pb-8 mb-4">

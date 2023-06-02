@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -20,6 +21,7 @@ interface Props {
 
 const ProductSearchResult: FC<Props> = ({ products }) =>
 {
+  const navigate = useNavigate()
 
 
   return (
@@ -29,6 +31,9 @@ const ProductSearchResult: FC<Props> = ({ products }) =>
         <div
           key={product?.id}
           className={`flex flex-col rounded-lg shadow-lg overflow-hidden mt-10 `}
+          onClick={() => {
+            navigate("/product/" + product?.id);
+          }}
         >
           <div className="flex-shrink-0">
             <img
@@ -39,8 +44,8 @@ const ProductSearchResult: FC<Props> = ({ products }) =>
           </div>
           <div className="flex-1 bg-white p-6 flex flex-col justify-between">
             <div className="flex-1">
-              <p className="text-sm font-medium text-indigo-600">
-                {product?.category}
+              <p className="text-sm font-medium text-[#2A977D]">
+                {product?.title}
               </p>
               <a href="#" className="block mt-2">
                 <p className="text-xl font-semibold text-gray-900">
@@ -55,7 +60,7 @@ const ProductSearchResult: FC<Props> = ({ products }) =>
               </p>
               <button
                 type="button"
-                className="ml-4 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
+                className="ml-4 inline-flex w-full items-center text-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-[#19e4b5] hover:bg-[#2A977D] focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
               >
                 More
               </button>

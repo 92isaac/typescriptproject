@@ -22,24 +22,24 @@ const ProductPage: React.FC<Props> = ({ products }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 className="text-4xl font-bold mb-8">Products</h1>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:flex md:flex-wrap md:justify-between gap-1 mt-6 md:w-full">
         {products.map((product: Product) => (
           <div
-            className="border shadow mb-6"
+            className="border md:w-1/6 flex flex-col rounded-lg shadow-lg overflow-hidden mt-10"
             key={product?.id}
             onClick={() => {
               navigate("/product/" + product?.id);
             }}
           >
-            <div className="bg-[#EAEFF5]">
+            <div className="bg-[#EAEFF5] flex-shrink-0">
               <img
                 src={product?.thumbnail}
                 alt=""
-                className="object-cover w-[90%] h-28 mx-auto transform hover:scale-105 transition duration-500 ease-in-out"
+                className="object-cover w-full h-28 mx-auto transform hover:scale-105 transition duration-500 ease-in-out"
               />
             </div>
             <div className="text-sm px-2">
-              <p className="mt-1">{product?.category}</p>
+              <p className="mt-1">{product?.title}</p>
               <h4 className="my-3 font-bold text-xs">
                 {product?.description.slice(0, 60)}...
               </h4>

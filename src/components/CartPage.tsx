@@ -108,6 +108,9 @@ const CartPage: React.FC<CartProps> = ({ items, onItemRemove }) => {
         <button className="w-full mt-4 bg-[#2A977D] text-white hover:bg-[#349C83] py-2 rounded-md shadow-md" onClick={()=>navigate('/products')}>
           Continue Shopping
         </button>
+        <button className="w-full mt-4 bg-[#2A977D] text-white hover:bg-[#349C83] py-2 rounded-md shadow-md" onClick={()=>navigate(-1)}>
+          Back
+        </button>
       </div>
     </div>
   );
