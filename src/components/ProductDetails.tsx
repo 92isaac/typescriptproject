@@ -82,7 +82,7 @@ const ProductDetails: React.FC<Product> = ({ products }) => {
             <p className="font-bold capitalize">{products?.category}</p>
           <div className="first py-6">
             <h1 className="text-2xl font-bold capitalize">{products?.title}</h1>
-            <p className="text-lg mb-2">{products?.description}</p>
+            <p className="text-sm md:text-lg mb-2">{products?.description}</p>
             <RatePro rating={products?.rating}/>
           </div>
           <hr />
