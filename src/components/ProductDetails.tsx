@@ -95,7 +95,7 @@ const ProductDetails: React.FC<Product> = ({ products }) => {
           <ColorPicker/>
           <hr className=""/>
           <div className="py-5 flex gap-4">
-            <div className="bg-gray-200 rounded-full flex items-center px-4 border-4">
+            <div className="bg-gray-200 rounded-full flex items-center md:px-4 border-4">
               <button className="rounded-t-2xl px-5 " onClick={()=>setAmount((prev)=>prev - 1)} disabled={amount <= 1 ? true : false} >-</button>
               <span className="bg-gray-200">{amount}</span>
               <button className="rounded-t-2xl px-5 " onClick={()=>setAmount((prev)=>prev + 1)}>+</button>

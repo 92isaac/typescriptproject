@@ -9,16 +9,21 @@ import { logOut, selectAuth } from "../../features/authSlice";
 import { RootState } from "../../features/store";
 import { navlinks } from "../commonfiles/data";
 import { toast } from "react-toastify";
+import { useGetUserCartQuery } from "../../features/cartApiSlice";
+// import { FiShoppingCart } from "react-icons/fi";
 
 const NavbarLarge = () => {
-  const { token, name, image } = useSelector(selectAuth);
+  const { token, name, image, id } = useSelector(selectAuth);
   const searchValue = useSelector(
     (state: RootState) => state.search.searchValue
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const { data: cartResult } = useGetUserCartQuery(id?.id);
+  const [notificationCount] = useState<number>(
+    cartResult?.carts[0]?.products.length
+  );
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -28,8 +33,6 @@ const NavbarLarge = () => {
     navigate("/login");
     window.location.reload();
   };
-
- 
 
   const handleModalToggle = () => {
     setIsModalOpen(!isModalOpen);
@@ -142,8 +145,15 @@ const NavbarLarge = () => {
             {/* Cart and notification icon */}
             <div className="flex items-center ">
               <Link to="/cart">
-                <div className="text-xl mr-6">
-                  <FaShoppingCart />
+                <div className="mr-3 items-center mt-1 inline-block">
+                  <span className="relative inline-block">
+                    <FaShoppingCart size={20} />
+                  </span>
+                  {notificationCount > 0 && (
+                    <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1 rounded-full">
+                      {notificationCount}
+                    </div>
+                  )}
                 </div>
               </Link>
               <div className="text-xl mr-6 relative">
@@ -180,7 +190,11 @@ const NavbarLarge = () => {
                   <ul>
                     {token ? (
                       <li>
-                        <Link className="mb-2 text-sm" onClick={handleLogout} to="/">
+                        <Link
+                          className="mb-2 text-sm"
+                          onClick={handleLogout}
+                          to="/"
+                        >
                           Log Out
                         </Link>
                       </li>
