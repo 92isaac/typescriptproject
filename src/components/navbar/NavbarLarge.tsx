@@ -14,7 +14,7 @@ import { useGetUserCartQuery } from "../../features/cartApiSlice";
 
 const NavbarLarge = () => {
   const { token, name, image, id } = useSelector(selectAuth);
-  console.log(id)
+  console.log(id);
   const searchValue = useSelector(
     (state: RootState) => state.search.searchValue
   );
@@ -26,7 +26,7 @@ const NavbarLarge = () => {
     cartResult?.carts[0]?.products.length
   );
 
-  console.log(cartResult)
+  console.log(cartResult);
 
   const handleLogout = () => {
     localStorage.removeItem("user");

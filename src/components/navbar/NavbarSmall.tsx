@@ -13,20 +13,23 @@ type Props = {
 };
 
 const NavbarSmall: React.FC<Props> = ({ isSidebarOpen }) => {
-  const id = useSelector(selectAuth)
-  const {data: cartResult } = useGetUserCartQuery(id?.id)
-  const [notificationCount] = useState<number>(cartResult?.carts[0]?.products.length);
+  const id = useSelector(selectAuth);
+  const { data: cartResult } = useGetUserCartQuery(id?.id);
+  const [notificationCount] = useState<number>(
+    cartResult?.carts[0]?.products.length
+  );
   const [messageCount] = useState<number>(0);
   const dispatch = useDispatch();
-  const searchValue = useSelector((state: RootState) => state.search.searchValue);
+  const searchValue = useSelector(
+    (state: RootState) => state.search.searchValue
+  );
   const navigate = useNavigate();
-
 
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     dispatch(searchResult);
     navigate("/searchresult");
-    dispatch(searchResult(''))
+    dispatch(searchResult(""));
   };
 
   const { pathname } = useLocation();
@@ -45,8 +48,10 @@ const NavbarSmall: React.FC<Props> = ({ isSidebarOpen }) => {
           <FiSearch size={20} />
         </span>
         <input
-           value={searchValue}
-           onChange={(event:React.ChangeEvent<HTMLInputElement>)=>{dispatch(searchResult(event.target.value))}}
+          value={searchValue}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            dispatch(searchResult(event.target.value));
+          }}
           type="text"
           placeholder="Search"
           className="w-full ml-2 outline-none border-none text-gray-700 text-sm"
@@ -54,18 +59,18 @@ const NavbarSmall: React.FC<Props> = ({ isSidebarOpen }) => {
         <button onClick={handleSubmit}>Search</button>
       </div>
       <div className="flex items-center justify-center w-1/3 ">
-          <Link to='/cart'>
-        <div className="relative inline-block">
-          <span className="text-gray-400">
-            <FiShoppingCart size={20} />
-          </span>
-          {notificationCount > 0 && (
-            <div className="absolute top-8 right-1 z-50 bg-red-500 text-white text-xs px-1 rounded-full">
-              {notificationCount}
-            </div>
-          )}
-        </div>
-          </Link>
+        <Link to="/cart">
+          <div className="relative inline-block">
+            <span className="text-gray-400">
+              <FiShoppingCart size={20} />
+            </span>
+            {notificationCount > 0 && (
+              <div className="absolute top-8 right-1 z-50 bg-red-500 text-white text-xs px-1 rounded-full">
+                {notificationCount}
+              </div>
+            )}
+          </div>
+        </Link>
         <div className="relative inline-block ml-4">
           <span className="text-gray-400">
             <FiMessageSquare size={20} />

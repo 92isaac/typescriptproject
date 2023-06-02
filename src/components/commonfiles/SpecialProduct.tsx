@@ -13,6 +13,7 @@ import {
 import Loading from "./Loading";
 import ErrorPage from "./ErrorPage";
 import Modal from "./Modal";
+import { Cartegories } from "../Cartegories";
 
 interface Product {
   id: string;
@@ -118,6 +119,7 @@ const SpecialProduct = (): JSX.Element => {
           )}
           {isError ? <ErrorPage message={`Some thing went wrong`} /> : null}
         </div>
+        <Cartegories />
         <div>
           <button
             className="px-4 py-2 text-sm font-medium text-white bg-[#349C83] rounded-md hover:bg-[#2A977D]"

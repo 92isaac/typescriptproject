@@ -9,23 +9,23 @@ import { useAppDispatch } from "../../constant/hooks";
 import { toast } from "react-toastify";
 
 const MobileSidebar: React.FC = () => {
-  const {token, name} = useSelector(selectAuth)
-  const dispatch= useAppDispatch()
+  const { token, name } = useSelector(selectAuth);
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleLogout=()=>{
-    localStorage.removeItem('user')
-    dispatch(logOut)
-    toast.success(`Good bye! ${name}.`)
-    toggleSidebar()
-    navigate('/login')
-    window.location.reload()
-  }
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    dispatch(logOut);
+    toast.success(`Good bye! ${name}.`);
+    toggleSidebar();
+    navigate("/login");
+    window.location.reload();
+  };
 
   return (
     <div className="flex">
@@ -56,16 +56,26 @@ const MobileSidebar: React.FC = () => {
           {navlinks.map((option) => (
             <ul key={option.id}>
               <li className="mb-2" onClick={toggleSidebar}>
-                <Link to={`${option.path}`}>{option.icon} {option.title}</Link>
+                <Link to={`${option.path}`}>
+                  {option.icon} {option.title}
+                </Link>
               </li>
             </ul>
           ))}
           <ul>
-            {token ? 
-            <li><Link className="mb-2"  onClick={handleLogout} to="/">Log Out</Link></li>
-            :
-            <li><Link className="mb-2"  onClick={toggleSidebar} to="/login">Log in</Link></li>
-          }
+            {token ? (
+              <li>
+                <Link className="mb-2" onClick={handleLogout} to="/">
+                  Log Out
+                </Link>
+              </li>
+            ) : (
+              <li>
+                <Link className="mb-2" onClick={toggleSidebar} to="/login">
+                  Log in
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
