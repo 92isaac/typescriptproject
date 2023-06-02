@@ -10,8 +10,8 @@ const AllProduct = () => {
   const {data: allproducts, isSuccess, isLoading} = useGetPaginateProductQuery(pageValue)
   const [currentPage, setCurrentPage] = useState(1);
 
-  console.log(allproducts)
-  console.log(allproducts?.products)
+  // console.log(allproducts)
+  // console.log(allproducts?.products)
 
 
   const handlePageChange = (page: number): void => {

@@ -8,7 +8,7 @@ import {
   useGetAllProductsQuery,
   useGetByCategoriesQuery,
   useGetProductCategoryQuery,
-  useGetSearchProductQuery,
+  // useGetSearchProductQuery,
 } from "../../features/productApiSlice";
 import Loading from "./Loading";
 import ErrorPage from "./ErrorPage";
@@ -44,10 +44,10 @@ const SpecialProduct = (): JSX.Element => {
     isLoading,
   } = useGetAllProductsQuery(null);
   const { data: allCategory } = useGetProductCategoryQuery(null);
-  const { data: searchQuery } = useGetSearchProductQuery(categoryp);
+  // const { data: searchQuery } = useGetSearchProductQuery(categoryp);
   const { data: productByCategory } = useGetByCategoriesQuery(categoryp);
-  console.log(productByCategory);
-  console.log(searchQuery);
+  // console.log(productByCategory);
+  // console.log(searchQuery);
 
   // const calPercentageRting = (rate: number): number => {
   //   const rateVal = (rate / 5) * 100;

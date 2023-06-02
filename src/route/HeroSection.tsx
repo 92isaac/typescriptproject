@@ -7,7 +7,7 @@ const HeroSection = () => {
   const randValue = Math.floor(Math.random() * 1000);
   const randomImage = `https://picsum.photos/id/${randValue}/500/500`;
 
-  console.log(randValue);
+  // console.log(randValue);
   return (
     <div className="relative bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto">

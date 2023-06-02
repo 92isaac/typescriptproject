@@ -11,7 +11,7 @@ const ProductImageGallery: React.FC<Props> = ({ images }) => {
     setSelectedImage(image);
   };
 
-  console.log(selectedImage);
+  // console.log(selectedImage);
 
   return (
     <div className="pt-10 flex flex-row-reverse w-2/5 md:block">

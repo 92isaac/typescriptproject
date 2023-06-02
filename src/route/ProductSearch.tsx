@@ -11,7 +11,7 @@ const ProductSearch = () => {
 
     console.log(searchValue)
     const { data: result, isLoading, isSuccess } = useGetSearchProductQuery(searchValue);
-    console.log(result)
+    // console.log(result)
     if(isLoading ) return <Loading />;
     if(searchValue === '') return <div className='min-h-[40vh] mt-10'><ErrorPage message={`Search field can't be empty`} /></div>
     
