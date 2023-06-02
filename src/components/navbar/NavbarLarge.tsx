@@ -23,7 +23,7 @@ const NavbarLarge = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: cartResult } = useGetUserCartQuery(id);
   const [notificationCount] = useState<number>(
-    cartResult?.carts[0]?.totalProducts
+    cartResult?.carts[0]?.products.length
   );
 
   console.log(cartResult)
@@ -153,7 +153,7 @@ const NavbarLarge = () => {
                     <FaShoppingCart size={20} />
                   </span>
                   {notificationCount > 0 && (
-                    <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1 rounded-full">
+                    <div className="absolute top-20 right-82 bg-red-500 text-white text-xs px-1 rounded-full">
                       {notificationCount}
                     </div>
                   )}

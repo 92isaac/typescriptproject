@@ -95,10 +95,10 @@ const ProductDetails: React.FC<Product> = ({ products }) => {
           <ColorPicker/>
           <hr className=""/>
           <div className="py-5 flex gap-4">
-            <div className="bg-gray-200 rounded-full flex items-center md:px-4 border-4">
-              <button className="rounded-t-2xl px-5 " onClick={()=>setAmount((prev)=>prev - 1)} disabled={amount <= 1 ? true : false} >-</button>
-              <span className="bg-gray-200">{amount}</span>
-              <button className="rounded-t-2xl px-5 " onClick={()=>setAmount((prev)=>prev + 1)}>+</button>
+            <div className="bg-gray-200 rounded-full flex items-center md:px-4">
+              <button className="rounded-t-2xl px-4 md:px-5 py-2 " onClick={()=>setAmount((prev)=>prev - 1)} disabled={amount <= 1 ? true : false} >-</button>
+              <span className="bg-gray-200 py-2">{amount}</span>
+              <button className="rounded-t-2xl px-4 md:px-5 py-2 " onClick={()=>setAmount((prev)=>prev + 1)}>+</button>
             </div>
 
             <div className="">
@@ -133,6 +133,13 @@ const ProductDetails: React.FC<Product> = ({ products }) => {
             <div className="flex justify-center items-center pt-2">
             <p className="text-xs text-red-400">Any problem with the product?  <span className="ml-2"><FaFlag className="inline text-red-300"/> Report</span> </p>
             </div>
+          </div>
+          <div className="mt-10 flex gap-4 items-center md:hidden">
+          <button className="py-2 px-6 bg-[#2A977D] text-white rounded-sm" onClick={()=>navigate(-1)}>Back</button>
+            <button className=" py-2 border-[#2A977D] text-[#2A977D] hover:border-[#2A977D]" onClick={()=>{
+             navigate('/')
+            }}> 
+            Home</button>
           </div>
         </div>
       </div>
