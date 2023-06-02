@@ -1,19 +1,16 @@
 import { useState } from "react";
 import { FaShoppingCart, FaMapMarkerAlt, FaBell } from "react-icons/fa";
-// import { HiOutlineUserCircle } from "react-icons/hi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { searchResult } from "../../features/searchSlice";
 import Logo from "../commonfiles/Logo";
 import { logOut, selectAuth } from "../../features/authSlice";
-// import { useAppSelector } from "../../constant/hooks";
 import { RootState } from "../../features/store";
 import { navlinks } from "../commonfiles/data";
 import { toast } from "react-toastify";
 
 const NavbarLarge = () => {
-  // const [isOpen, setIsOpen] = useState(false);
   const { token, name, image } = useSelector(selectAuth);
   const searchValue = useSelector(
     (state: RootState) => state.search.searchValue
@@ -22,12 +19,6 @@ const NavbarLarge = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log(image);
-  const options = [
-    { value: "23,234.6", change: "+0.005%", currency: "btc" },
-    { value: "1,791.34", change: "-0.003%", currency: "eth" },
-    { value: "0.2781", change: "-1.23%", currency: "ltc" },
-  ];
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -38,9 +29,7 @@ const NavbarLarge = () => {
     window.location.reload();
   };
 
-  const handleOptionClick = () => {
-    setIsModalOpen(false);
-  };
+ 
 
   const handleModalToggle = () => {
     setIsModalOpen(!isModalOpen);
@@ -50,7 +39,6 @@ const NavbarLarge = () => {
     e.preventDefault();
     dispatch(searchResult);
     navigate("/searchresult");
-    // dispatch(searchResult(''))
   };
 
   return (

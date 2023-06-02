@@ -4,7 +4,6 @@ import './App.css'
 import Home from './route/Home.tsx'
 import InitialSpinner  from "./components/commonfiles/InitialSpinner.tsx";
 import SharedLayout from "./components/commonfiles/SharedLayout.tsx";
-import { Marketplace } from "./components/Marketplace.tsx";
 import Cart from "./route/Cart.tsx";
 import ProductSearch from "./route/ProductSearch.tsx";
 import SignIn from "./route/SignIn.tsx";

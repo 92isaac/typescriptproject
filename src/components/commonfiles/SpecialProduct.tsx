@@ -100,7 +100,7 @@ const SpecialProduct = (): JSX.Element => {
                 </div>
                 <div className="text-sm px-2">
                   <p className="mt-1">{product?.title}</p>
-                  <h4 className="my-3 font-bold text-xs">
+                  <h4 className="hidden md:block md:my-3 md:font-bold md:text-xs">
                     {product?.description.slice(0, 60)}...
                   </h4>
                   <div className="flex text-sm justify-between pb-2">
