@@ -14,12 +14,12 @@ const FadeOneBy = ({ text }: { text: string | undefined }) => {
         return (
           <motion.span
             key={index}
-            className='inline-block'
+            className={`inline-block`}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{
-              duration: 0.6,
+              duration: 0.9,
               delay: index * 0.08,
             }}
           >

@@ -51,10 +51,13 @@
 
 import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3';
 import { useNavigate } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
+import { selectAuth } from '../features/authSlice';
 
 export default function FlutterW() {
   const navigate = useNavigate();
+  const { name, lastName, } = useSelector(selectAuth)
+
   const config = {
     public_key: 'FLWPUBK_TEST-f420e3cc38cc495e58f47a583e889310-X',
     tx_ref: Date.now().toString(),
@@ -76,22 +79,26 @@ export default function FlutterW() {
   const handleFlutterPayment = useFlutterwave(config);
 
   return (
-    <div className="App">
-     <h1>Hello Test user</h1>
+    <div className="min-h-[45vh] mt-10 bg-gray-100 flex items-center justify-center">
+      <div className="bg-white shadow-lg rounded-lg p-8 max-w-sm mx-auto">
+
+     <h1>Hello {name} {lastName}</h1>
 
       <button
+      className='bg-green-600 hover:bg-green-600 text-white px-4 py-2 rounded'
         onClick={() => {
           handleFlutterPayment({
             callback: (response) => {
                console.log(response);
                 closePaymentModal() // this will close the modal programmatically
             },
-            onClose: () => {navigate('/')},
+            onClose: () => {navigate('/payment-success')},
           });
         }}
       >
-        Payment with React hooks
+        Make Payment 
       </button>
+    </div>
     </div>
   );
 }

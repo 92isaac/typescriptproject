@@ -17,6 +17,7 @@ import ProtectedRoute from "./route/ProtectedRoute.tsx";
 import { ProductInDetails } from "./route/ProductInDetails.tsx";
 import Payment from "./route/Payment.tsx";
 import FlutterW from "./components/FlutterW.tsx";
+import PaymentSuccessPage from "./route/PaymentSuccessPage.tsx";
 
 
 function App() {
@@ -53,6 +54,7 @@ console.log(user)
       <Route path="/payment" element={<Payment/>} />
       <Route path="/flutter" element={<FlutterW/>} />
       <Route path="/products" element={<AllProduct/>} />
+      <Route path="/payment-success" element={<PaymentSuccessPage/>}/>
       <Route path="*" element={<NotFoundPage/>} />
       </Route>
     </Routes>
