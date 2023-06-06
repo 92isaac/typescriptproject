@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const PaymentForm: React.FC = () => {
   const [cardNumber, setCardNumber] = useState('');
@@ -21,6 +22,7 @@ const PaymentForm: React.FC = () => {
     e.preventDefault();
     // Handle form submission logic here
   };
+  const navigate = useNavigate()
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
@@ -72,6 +74,7 @@ const PaymentForm: React.FC = () => {
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded"
+            onClick={()=>navigate('/flutter')}
           >
             Submit
           </button>
