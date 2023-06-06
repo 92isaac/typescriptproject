@@ -9,11 +9,12 @@ export const cartApi = createApi({
     }),
     endpoints: (builder)=>({
         addCart: builder.mutation({
-            query:(body: {id: number; quantity: number}) =>{
+            query:(body:  {id: number; quantity: number}, ) =>{
                 return {
                     url:"/carts/add",
-                    method: "POST",
+                    method: "PUT",
                     body,
+                    merge: true,
                 }
             }
         }),
@@ -21,6 +22,16 @@ export const cartApi = createApi({
             query: (userId)=> `/users/${userId}/carts`,        
         }),
     })
+    // endpoints: (builder) => ({
+    //   addCart: builder.mutation({
+    //     query: (cartData:{}, userId:any) => ({
+    //       url: `carts/${userId}`,
+    //       method: 'PUT',
+    //       headers: { 'Content-Type': 'application/json' },
+    //       body: cartData,
+    //     }),
+    //   }),
+    // }),
 })
 
 export const { useAddCartMutation, useGetUserCartQuery } = cartApi

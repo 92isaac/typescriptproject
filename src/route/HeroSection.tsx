@@ -1,12 +1,23 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { Link } from "react-router-dom";
 import NavbarSmall from "../components/navbar/NavbarSmall";
+import { useAnimation } from 'framer-motion';
+import { useInView } from "react-intersection-observer";
+import { FadeIn } from '../animation/FadeIn';
+import SlideUp from '../animation/SlideUp';
+
 
 const HeroSection = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const randValue = Math.floor(Math.random() * 1000);
   const randomImage = `https://picsum.photos/id/${randValue}/500/500`;
-
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+  useEffect(() => {
+    if (inView) {
+      controls.start('animate');
+    }
+  }, [controls, inView]);
   // console.log(randValue);
   return (
     <div className="relative bg-gray-50 overflow-hidden">
@@ -32,14 +43,21 @@ const HeroSection = () => {
           <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 xl:mt-28">
             <div className="sm:text-center lg:text-left">
               <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                <SlideUp animate={controls}>
                 <span className="block">Shop the latest trends</span>
+                </SlideUp>
                 <span className="block text-[#349C83]">at our store</span>
               </h1>
+              <div ref={ref}>
+                <FadeIn>
               <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                 Discover our wide range of products for women, men, and kids.
                 From clothing and accessories to beauty and homeware, we have
                 everything you need to update your style for the season.
               </p>
+                </FadeIn>
+
+              </div>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
                   <Link

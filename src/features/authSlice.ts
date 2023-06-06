@@ -46,7 +46,7 @@ export const authSlice = createSlice({
         lastName: string;
         gender: string;
         image: string;
-       
+      
       }>
     ) => {
       localStorage.setItem(

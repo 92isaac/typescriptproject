@@ -1,5 +1,9 @@
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import SlideUp from "../animation/SlideUp";
+import { useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from 'react'
 
 interface Product {
   title: string;
@@ -18,14 +22,23 @@ interface Props {
 
 const ProductPage: React.FC<Props> = ({ products }) => {
   const navigate = useNavigate();
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+  useEffect(() => {
+    if (inView) {
+      controls.start('animate');
+    }
+  }, [controls, inView]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 className="text-4xl font-bold mb-8">Products</h1>
-      <div className="grid grid-cols-2 md:flex md:flex-wrap md:justify-between gap-1 mt-6 md:w-full">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
+      <SlideUp animate={controls}>
+      <h1 className="text-4xl font-bold mt-16">Products</h1>
+      </SlideUp>
+      <div className="grid grid-cols-2 md:flex md:flex-wrap md:justify-between gap-1 mt-2 md:w-full">
         {products.map((product: Product) => (
           <div
-            className="border md:w-1/6 flex flex-col rounded-lg shadow-lg overflow-hidden mt-10"
+            className="border md:w-1/6 flex flex-col rounded-lg shadow-lg overflow-hidden mt-3"
             key={product?.id}
             onClick={() => {
               navigate("/product/" + product?.id);

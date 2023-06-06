@@ -102,7 +102,7 @@ const CartPage: React.FC<CartProps> = ({ items, onItemRemove }) => {
             <div className=''>${cartResult?.carts[0]?.total}</div>
           </div>
         </div>
-        <button className="w-full mt-4 bg-[#349C83] text-white hover:bg-[#2A977D] py-2 rounded-md shadow-md">
+        <button className="w-full mt-4 bg-[#349C83] text-white hover:bg-[#2A977D] py-2 rounded-md shadow-md" onClick={()=>navigate('/payment')}>
           Checkout
         </button>
         <button className="w-full mt-4 bg-[#2A977D] text-white hover:bg-[#349C83] py-2 rounded-md shadow-md" onClick={()=>navigate('/products')}>

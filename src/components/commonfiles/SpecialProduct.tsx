@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import { Buttons } from "./Buttons";
 import { OtherProduct } from "./OtherProduct";
@@ -14,6 +14,9 @@ import Loading from "./Loading";
 import ErrorPage from "./ErrorPage";
 import Modal from "./Modal";
 import { Cartegories } from "../Cartegories";
+import { useInView } from "react-intersection-observer";
+import { useAnimation } from "framer-motion";
+import { FadeIn } from "../../animation/FadeIn";
 
 interface Product {
   id: string;
@@ -45,15 +48,15 @@ const SpecialProduct = (): JSX.Element => {
     isLoading,
   } = useGetAllProductsQuery(null);
   const { data: allCategory } = useGetProductCategoryQuery(null);
-  // const { data: searchQuery } = useGetSearchProductQuery(categoryp);
   const { data: productByCategory } = useGetByCategoriesQuery(categoryp);
-  // console.log(productByCategory);
-  // console.log(searchQuery);
-
-  // const calPercentageRting = (rate: number): number => {
-  //   const rateVal = (rate / 5) * 100;
-  //   return rateVal;
-  // };
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+ 
+  useEffect(() => {
+    if (inView) {
+      controls.start('animate');
+    }
+  }, [controls, inView]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,7 +92,9 @@ const SpecialProduct = (): JSX.Element => {
                 onClick={() => {
                   navigate("/product/" + product?.id);
                 }}
+                ref={ref}
               >
+                <FadeIn>
                 <div className="bg-[#EAEFF5]">
                   <div className="flex-shrink-0">
                     <img
@@ -114,6 +119,7 @@ const SpecialProduct = (): JSX.Element => {
                     </p>
                   </div>
                 </div>
+                </FadeIn>
               </div>
             ))
           )}
@@ -143,13 +149,16 @@ const SpecialProduct = (): JSX.Element => {
             </div>
           </Modal>
         </div>
+        <FadeIn>
+
         {isLoading ? (
           <Loading />
-        ) : (
-          <OtherProduct
+          ) : (
+            <OtherProduct
             product={productByCategory ? productByCategory.products : []}
-          />
-        )}
+            />
+            )}
+            </FadeIn>
       </div>
     </div>
   );

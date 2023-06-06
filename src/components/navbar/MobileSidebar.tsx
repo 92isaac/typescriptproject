@@ -28,7 +28,7 @@ const MobileSidebar: React.FC = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex z-50">
       <div
         className={`fixed z-20 inset-0 bg-black transition-opacity ${
           isOpen ? "opacity-50" : "opacity-0 pointer-events-none"

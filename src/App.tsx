@@ -15,6 +15,7 @@ import ScrollToTop from "./constant/ScrollToTop.tsx";
 import Profile from "./route/Profile.tsx";
 import ProtectedRoute from "./route/ProtectedRoute.tsx";
 import { ProductInDetails } from "./route/ProductInDetails.tsx";
+import Payment from "./route/Payment.tsx";
 
 
 function App() {
@@ -48,6 +49,7 @@ console.log(user)
       <Route path="/cart" element={<ProtectedRoute><Cart/></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
       <Route path="/login" element={<SignIn/>} />
+      <Route path="/payment" element={<Payment/>} />
       <Route path="/products" element={<AllProduct/>} />
       <Route path="*" element={<NotFoundPage/>} />
       </Route>
