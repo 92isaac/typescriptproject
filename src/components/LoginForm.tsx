@@ -85,9 +85,12 @@ const LoginForm = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (alert === true) return false;
-    }, 1000);
+      setAlert(false)
+    }, 5000);
+    
   }, [alert]);
+
+  console.log(alert)
 
   return (
     <div className="bg-white mx-auto max-w-md shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -164,7 +167,7 @@ const LoginForm = () => {
           <p className="md:mt-8 font-bold">
             Use any of the following details to access the project
           </p>
-          {alert && <p className="italic text-xs">Text copied to clipboard</p>}
+          {alert && <p className="italic text-xs font-semibold text-green-500 transition duration-2000">Text copied to clipboard</p>}
           <div className="md:grid md:grid-cols-2 md:mt-2">
             {users?.users?.slice(0, 4).map((user: any) => (
               <div className="" key={user?.id}>
