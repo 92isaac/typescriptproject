@@ -14,22 +14,23 @@ const LoginForm = () => {
       data: loginData,
       isSuccess: isLoginSuccess,
       isError: isLoginError,
-      error: isError
+      error: isError,
     },
   ] = useLoginUserMutation();
-  const 
-    {
-      data: users,
-      // isSuccess: isUserSuccess,
-      // isError: isUserError,
-    }
-  = useGetUsersQuery(null);
+  const {
+    data: users,
+    // isSuccess: isUserSuccess,
+    // isError: isUserError,
+  } = useGetUsersQuery(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
+  const [alert, setAlert] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
-
+  // const low = Math.floor(Math.random() * 6)
+  // const high = Math.floor(Math.random() * low-1) + 5
+  // console.log(low, high)
   const openModal = () => {
     setIsOpen(true);
   };
@@ -38,36 +39,61 @@ const LoginForm = () => {
     setIsOpen(false);
   };
 
-  const handleLogin = async (e:React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    if(username && password) {
-      await loginUser({username, password});
-    }else {
-      toast.error('All input fields are required')
+  const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (username && password) {
+      await loginUser({ username, password });
+    } else {
+      toast.error("All input fields are required");
     }
   };
 
-  useEffect(()=>{
-    if(isLoginSuccess){
-      toast.success('Login Success');
-      dispatch(setUser({token:loginData.token, name:loginData.firstName, email:loginData.email, username:loginData.username, lastName:loginData.last, image:loginData.image, gender:loginData.gender, id:loginData.id}))
-      navigate('/')
+  useEffect(() => {
+    if (isLoginSuccess) {
+      toast.success("Login Success");
+      dispatch(
+        setUser({
+          token: loginData.token,
+          name: loginData.firstName,
+          email: loginData.email,
+          username: loginData.username,
+          lastName: loginData.last,
+          image: loginData.image,
+          gender: loginData.gender,
+          id: loginData.id,
+        })
+      );
+      navigate("/");
     }
 
-    
-if(isLoginError || isError){
-      toast.error('Password or Username is wrong');
-      navigate('/login')
+    if (isLoginError || isError) {
+      toast.error("Password or Username is wrong");
+      navigate("/login");
     }
-    
   }, [isLoginSuccess, isError]);
+
+  const handleCopy = (text: string) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        console.log("Text copied to clipboard");
+      })
+      .catch((error) => {
+        console.error("Error copying text to clipboard:", error);
+      });
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (alert === true) return false;
+    }, 1000);
+  }, [alert]);
 
   return (
     <div className="bg-white mx-auto max-w-md shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <h2 className="text-center text-2xl font-bold mb-8">Sign In</h2>
       {/* {} */}
-      <form 
-      >
+      <form>
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -127,28 +153,45 @@ if(isLoginError || isError){
         </p>
       </form>
       <div className="flex justify-center align-middle">
-      <button
-        className="px-4 py-2 text-sm font-medium text-white bg-[#349C83] rounded-md hover:bg-[#2A977D]"
-        onClick={openModal}
-      >
-        Click for a demo
-      </button>
+        <button
+          className="px-4 py-2 text-sm font-medium text-white bg-[#349C83] rounded-md hover:bg-[#2A977D]"
+          onClick={openModal}
+        >
+          Click for a demo
+        </button>
 
-      <Modal isOpen={isOpen} onClose={closeModal}>
-        <p className="md:mt-8 font-bold">Use any of the following details to access the project</p>
-      <div className="md:grid md:grid-cols-2 md:mt-2">
-          {users?.users?.slice(0,10).map((user:any) => (
-           <div className="" key={user?.id}>
-            <div className="border px-5 py-3">
-            <h3>Username: {user?.username}</h3>
-            <h3>Password: {user?.password}</h3>
-            </div>
-            <hr />
-           </div>
-          ))}
-        </div>
-      </Modal>
-    </div>
+        <Modal isOpen={isOpen} onClose={closeModal}>
+          <p className="md:mt-8 font-bold">
+            Use any of the following details to access the project
+          </p>
+          {alert && <p className="italic text-xs">Text copied to clipboard</p>}
+          <div className="md:grid md:grid-cols-2 md:mt-2">
+            {users?.users?.slice(0, 4).map((user: any) => (
+              <div className="" key={user?.id}>
+                <div className="border px-5 py-3">
+                  <h3
+                    onClick={() => {
+                      handleCopy(`${user?.username}`);
+                      setAlert(!alert);
+                    }}
+                  >
+                    Username: {user?.username}
+                  </h3>
+                  <h3
+                    onClick={() => {
+                      handleCopy(`${user?.password}`);
+                      setAlert(!alert);
+                    }}
+                  >
+                    Password: {user?.password}
+                  </h3>
+                </div>
+                <hr />
+              </div>
+            ))}
+          </div>
+        </Modal>
+      </div>
     </div>
   );
 };
