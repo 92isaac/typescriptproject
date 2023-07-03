@@ -15,7 +15,7 @@ import ScrollToTop from "./constant/ScrollToTop.tsx";
 import Profile from "./route/Profile.tsx";
 import ProtectedRoute from "./route/ProtectedRoute.tsx";
 import { ProductInDetails } from "./route/ProductInDetails.tsx";
-import Payment from "./route/Payment.tsx";
+// import Payment from "./route/Payment.tsx";
 import FlutterW from "./components/FlutterW.tsx";
 import PaymentSuccessPage from "./route/PaymentSuccessPage.tsx";
 
@@ -51,7 +51,7 @@ console.log(user)
       <Route path="/cart" element={<ProtectedRoute><Cart/></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
       <Route path="/login" element={<SignIn/>} />
-      <Route path="/payment" element={<Payment/>} />
+      {/* <Route path="/payment" element={<Payment/>} /> */}
       <Route path="/flutter" element={<FlutterW/>} />
       <Route path="/products" element={<AllProduct/>} />
       <Route path="/payment-success" element={<PaymentSuccessPage/>}/>
