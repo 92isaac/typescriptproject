@@ -85,7 +85,7 @@ const HeroSection = () => {
           className="h-1/2 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
           src={randomImage}
           alt=""
-          loading="lazy"
+          // loading="lazy"
         />
       </div>
     </div>

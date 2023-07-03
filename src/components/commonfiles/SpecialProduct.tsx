@@ -61,7 +61,7 @@ const SpecialProduct = (): JSX.Element => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="mt-4 rounded-md bg-white p-5 md:mt-40">
+      <div className="mt-4 rounded-md bg-white p-5 md:mt-[120px]">
         <div className="flex justify-between">
           <div className="block text-xs md:text-sm font-bold md:flex md:gap-2">
             <FadeOneBy text="Special Products for You"/>
