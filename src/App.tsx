@@ -55,8 +55,8 @@ console.log(user)
       <Route path="/flutter" element={<FlutterW/>} />
       <Route path="/products" element={<AllProduct/>} />
       <Route path="/payment-success" element={<PaymentSuccessPage/>}/>
-      <Route path="*" element={<NotFoundPage/>} />
       </Route>
+      <Route path="*" element={<NotFoundPage/>} />
     </Routes>
     </div>}
     </>
